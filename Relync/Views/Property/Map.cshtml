@@ -4,6 +4,7 @@
     ViewBag.Title = "Map";
     Layout = "~/Views/Shared/_pptylyout.cshtml";
 }
+
 <script type="text/javascript">
     var map = null;
 
@@ -28,7 +29,7 @@ Json.Encode(
         var infoboxLayer = new Microsoft.Maps.EntityCollection();
         var pinLayer = new Microsoft.Maps.EntityCollection();
         // Initialize the map
-        map = new Microsoft.Maps.Map(document.getElementById("mapDiv"), { credentials: "Aio4TWHf6U2isW-y1tzY5WUCBO778t2qso2XUKDj3TX8ecNxywEUQ0nl3dCDMrPx",mapTypeId: Microsoft.Maps.MapTypeId.road,
+        map = new Microsoft.Maps.Map(document.getElementById("mapDiv"), { credentials: " Aio4TWHf6U2isW-y1tzY5WUCBO778t2qso2XUKDj3TX8ecNxywEUQ0nl3dCDMrPx",mapTypeId: Microsoft.Maps.MapTypeId.road,
             showMapTypeSelector: false /*center: new Microsoft.Maps.Location(0.3136, 32.5811), zoom: 16, showScalebar: false,enableSearchLogo:false,showMapTypeSelector:false,showDashboard:false*/ });
        
         // Create the info box for the pushpin
