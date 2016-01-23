@@ -1,0 +1,88 @@
+﻿
+
+<head>
+<script type="text/javascript" src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0"></script>
+
+<script type="text/javascript">
+
+         var map = null;
+
+         function GetMap()
+         {
+            // Initialize the map
+             map = new Microsoft.Maps.Map(document.getElementById("mapDiv"), { credentials: "ArP9YXvDyZRDN2LPAKH7XtJAK-9bOgPVlu90FXatfLdRaH9246hGOQWnnH3qbF4m", mapTypeId: Microsoft.Maps.MapTypeId.road, center: new Microsoft.Maps.Location(0.3136, 32.5811), zoom: 16, showScalebar: false });
+
+         }
+
+         function ClickGeocode(credentials)
+         {
+            map.getCredentials(MakeGeocodeRequest);
+         }
+
+         function MakeGeocodeRequest(credentials)
+         {
+
+            var geocodeRequest = "http://dev.virtualearth.net/REST/v1/Locations?query=" + encodeURI(document.getElementById('txtQuery').value) + "&output=json&jsonp=GeocodeCallback&key=" + credentials;
+
+            CallRestService(geocodeRequest);
+         }
+
+         function GeocodeCallback(result)
+         {
+            alert("Found location: " + result.resourceSets[0].resources[0].name);
+
+            if (result &&
+                   result.resourceSets &&
+                   result.resourceSets.length > 0 &&
+                   result.resourceSets[0].resources &&
+                   result.resourceSets[0].resources.length > 0)
+            {
+               // Set the map view using the returned bounding box
+               var bbox = result.resourceSets[0].resources[0].bbox;
+               var viewBoundaries = Microsoft.Maps.LocationRect.fromLocations(new Microsoft.Maps.Location(bbox[0], bbox[1]), new Microsoft.Maps.Location(bbox[2], bbox[3]));
+               map.setView({ bounds: viewBoundaries});
+
+               // Add a pushpin at the found location
+               var location = new Microsoft.Maps.Location(result.resourceSets[0].resources[0].point.coordinates[0], result.resourceSets[0].resources[0].point.coordinates[1]);
+               var pushpin = new Microsoft.Maps.Pushpin(location);
+               map.entities.push(pushpin);
+               pinInfobox = new Microsoft.Maps.Infobox(location,
+              {
+                  title: 'My Pushpin',
+                  description: 'This pushpin is located at (0,0).',
+                  visible: false,
+                  offset: new Microsoft.Maps.Point(0, 15)
+              });
+                // Add handler for the pushpin click event.
+               Microsoft.Maps.Events.addHandler(pushpin, 'click', displayInfobox);
+                // Hide the infobox when the map is moved.
+               Microsoft.Maps.Events.addHandler(map, 'viewchange', hideInfobox);
+                // Add the pushpin and infobox to the map
+               
+               map.entities.push(pinInfobox);
+               function displayInfobox(e) {
+                   pinInfobox.setOptions({ visible: true });
+               }
+               function hideInfobox(e) {
+                   pinInfobox.setOptions({ visible: false });
+               }
+            }
+         }
+
+         function CallRestService(request)
+         {
+            var script = document.createElement("script");
+            script.setAttribute("type", "text/javascript");
+            script.setAttribute("src", request);
+            document.body.appendChild(script);
+         }
+
+</script>
+   </head>
+<body onload="GetMap();">
+    
+    <div id='mapDiv' class="jumbotron" style="position:relative; height:500px"></div>
+    <input id="txtQuery" type="text" value="Kampala" />
+    <input type="button" value="Geocode" onclick="ClickGeocode()" />
+</body>
+

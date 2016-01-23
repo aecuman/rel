@@ -1,0 +1,102 @@
+﻿@using Relync.Models
+    @model PropertyList
+        
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            HD
+        </th>
+        <th>
+            Px
+        </th>
+        <th>
+            Event
+        </th>
+        <th>
+            Source
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (HistoryModel hm in Model.PriceHistory)
+    {
+        <tr>
+            <td>
+                @hm.HDate
+
+            </td>
+            <td>
+                @hm.PriceHistory
+
+            </td>
+            <td>
+                @hm.Event
+
+            </td>
+            <td>
+                @hm.Source
+
+            </td>
+
+        </tr>
+    }
+
+</table>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>HistoryModel</h4>
+        <hr />
+       
+        <div class="form-group">
+           HDate
+            <div class="col-md-10">
+                <input type="date" name="HDate" id="HDate" value=""/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            PriceHistory
+           
+            <div class="col-md-10">
+                <input type="text" name="PriceHistory" id="PriceHistory"value="" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            Event
+            <div class="col-md-10">
+                <input type="text" name="Event" id="Event" value="" />
+            </div>
+        </div>
+
+        <div class="form-group">
+           Source
+            <div class="col-md-10">
+                <input type="text" name="Source" id="Source" value=""/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+   

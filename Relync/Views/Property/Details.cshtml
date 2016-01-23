@@ -1,0 +1,208 @@
+﻿
+@model Relync.Models.PropertyList
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script type="text/javascript" src="~/Scripts/owl.carousel.js"></script>
+<script>
+    $(document).ready(function(){
+    $('.owl-carousel').owlCarousel({
+        rtl: true,
+        loop: true,
+        margin: 10,
+        nav: true,
+        lazyLoad: true,
+        
+        responsive: {
+            0: {
+                items: 1
+            },
+            600: {
+                items: 1
+            },
+            1000: {
+                items: 1
+            }
+        }
+    })
+    });
+    function GetMap(){
+        // Initialize the map
+        map = new Microsoft.Maps.Map(document.getElementById("myMap"),
+        { credentials: "ArP9YXvDyZRDN2LPAKH7XtJAK-9bOgPVlu90FXatfLdRaH9246hGOQWnnH3qbF4m", showScalebar: false,enableSearchLogo:false,showMapTypeSelector:false,showDashboard:false });
+        // Define the pushpin location
+        var loc = new Microsoft.Maps.Location(@Model.lat, @Model.lon);
+       
+        // Add a pin to the map
+        var pin = new Microsoft.Maps.Pushpin(loc);
+        map.entities.push(pin);
+        // Center the map on the location
+        map.setView({ center: loc, zoom: 16 });
+    }
+</script>
+<body onfocus="GetMap();">
+    <h4 class="col-lg-offset-1">@Html.DisplayFor(model => model.pptyType) - @Html.DisplayFor(model => model.District) - @Html.DisplayFor(model => model.Suburb) - @Html.DisplayFor(model => model.Contact)</h4>
+
+
+
+    <div class="owl-carousel owl-theme">
+        @foreach (var items in Model.ImageList)
+        {
+            <div class="item">
+                <img src="@items.ImagePath" alt="@items.Name" class="img-rounded" />
+            </div>
+        }
+        <div class="item">
+            <div id='myMap' style="position:relative; height:400px;"></div>
+        </div>
+        <div class="item">
+            <img src="@Model.planLink" class="img-rounded"/>
+        </div>
+    </div>
+  
+
+    <div class="row">
+        <div class="col-lg-8 palette palette-asbestos">
+            <div class="col-lg-4 left">
+                <dl class="palette palette-asbestos">
+                    <dt>
+                        @Html.DisplayFor(model => model.Suburb)
+                    </dt>
+                    <dd>
+                       
+                        <b>@Html.DisplayFor(model => model.Place)</b>
+                        <br>@Html.DisplayFor(model => model.Bedrooms)&nbsp;Bedrooms&nbsp;|&nbsp;
+                        <span></span>@Html.DisplayFor(model => model.Baths)&nbsp;Baths
+                    </dd>
+                        </dl>
+             
+            </div>
+            <div class="col-lg-4 text-right right ">
+                <dl class="palette palette-sun-flower">
+                    <dt> @Html.DisplayFor(model => model.Price)</dt>
+                    <dd>
+                        <small>per month</small>
+                    </dd>
+                </dl>
+            </div>
+            
+        </div>
+     
+                <dl class="dl-horizontal col-lg-8">
+                    <dd>
+                        <b> @Html.DisplayName("General Description")</b>
+                       
+                    </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.GDescription)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Price)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Price)
+                    </dd>
+
+
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Facts)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Facts)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Rooms)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Rooms)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Construction)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Construction)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Other)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Other)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Nearby)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Nearby)
+                    </dd>
+
+
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Date)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Date)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.ContactName)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.ContactName)
+                    </dd>
+
+
+
+                    <dt>
+                        @Html.DisplayName("Call")@Html.DisplayFor(model => model.ListedBy)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Phone)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Email)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Email)
+                    </dd>
+                    <dt>
+                        @Html.DisplayName("Video Tour")
+                    </dt>
+                    <dd class="embed-responsive embed-responsive-16by9">
+                        <iframe class="embed-responsive-item" src="http://www.youtube.com/embed/@Html.DisplayFor(mode=>mode.vidLink)?rel=0" frameborder="0" allowfullscreen></iframe>  
+                    </dd>
+
+
+                </dl>
+                <div >
+                    
+                </div>
+          
+        </div>
+
+
+    <p>
+      <!--  @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |-->
+        @Html.ActionLink("Back to List", "Map")
+    </p>
+</body>

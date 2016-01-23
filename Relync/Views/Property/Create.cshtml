@@ -1,0 +1,328 @@
+﻿@model Relync.Models.PropertyList
+
+<script type="text/javascript">
+var map = null;
+function GetMap()
+{
+    // Initialize the map
+    map = new Microsoft.Maps.Map(document.getElementById("myMap"),
+    { credentials: "ArP9YXvDyZRDN2LPAKH7XtJAK-9bOgPVlu90FXatfLdRaH9246hGOQWnnH3qbF4m", center: new Microsoft.Maps.Location(0.3136, 32.5811), zoom: 16, showScalebar: false });
+    // Retrieve the location of the map center
+    var center = map.getCenter();
+    // Add a pin to the center of the map, using a custom icon
+    var pin = new Microsoft.Maps.Pushpin(center, { width: 50, height: 50, draggable: true });
+    Microsoft.Maps.Events.addHandler(pin, 'click', displayLatLong);
+    map.entities.push(pin);
+}
+function displayLatLong(e) {
+    if (e.targetType == "pushpin") {
+        var pinLoc = e.target.getLocation();
+     
+        document.getElementById("lat").value = pinLoc.latitude;
+        document.getElementById("lon").value = pinLoc.longitude;
+
+
+    }
+}
+</script>
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<body onload="GetMap();">
+ 
+
+   
+@ViewBag.sent
+    <h2>Create</h2>
+
+    <form action="" method="post" enctype="multipart/form-data">
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>PropertyList</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.Label("Property Type", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                   @Html.DropDownListFor(model => model.pptyType, new List<SelectListItem>
+    {
+    new SelectListItem(){Text="Select Type...",Value=""},
+    new SelectListItem(){Text="Rent",Value="RENT"},
+    new SelectListItem(){Text="Sale",Value="SALE"},
+ 
+    }, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.pptyType, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.Label("Category", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.Category, new List<SelectListItem>
+    {
+    new SelectListItem(){Text="Select Category...",Value=""},
+    new SelectListItem(){Text="Standalone",Value="Standalone"},
+    new SelectListItem(){Text="Semi-Detached",Value="Semi-Detached"},
+ new SelectListItem(){Text="Apartment",Value="Apartment"}
+    }, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Category, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.District, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.District, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.District, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Suburb, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Suburb, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Suburb, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Place, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Place, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Place, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Bedrooms, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Bedrooms, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Bedrooms, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Baths, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Baths, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Baths, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Area, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Area, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Area, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.Label("Drag Pin to Location", htmlAttributes: new { @class = "control-label  col-md-2" })
+                <div class="col-md-10">
+                    <div id='myMap' style="position:relative; width:400px; height:400px;"></div>
+                                   </div>
+                  
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.lat, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.lat, new { htmlAttributes = new { @class = "form-control",@placeholder= "Drag Pin to insert Coordinates" } })
+                        @Html.ValidationMessageFor(model => model.lat, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.lon, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.lon, new { htmlAttributes = new { @class = "form-control", @placeholder = "Drag Pin to insert Coordinates" } })
+                        @Html.ValidationMessageFor(model => model.lon, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Availability, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Availability, new { htmlAttributes = new { @class = "checkbox" } })
+                        @Html.ValidationMessageFor(model => model.Availability, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.GDescription, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                      
+                        <textarea placeholder="Comment *" class="form-control" rows="10" id="GDescription" name="GDescription"></textarea>
+                        @Html.ValidationMessageFor(model => model.GDescription, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Facts, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <textarea placeholder="Comment *" class="form-control" rows="10" id="Facts" name="Facts"></textarea>
+                  
+                        @Html.ValidationMessageFor(model => model.Facts, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Rooms, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <textarea placeholder="Comment *" class="form-control" rows="10" id="Rooms" name="Rooms"></textarea>
+                      
+                        @Html.ValidationMessageFor(model => model.Rooms, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Construction, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <textarea placeholder="Comment *" class="form-control" rows="10" id="Construction" name="Construction"></textarea>
+                        
+                        @Html.ValidationMessageFor(model => model.Construction, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Other, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <textarea placeholder="Comment *" class="form-control" rows="10" id="Other" name="Other"></textarea>
+                       
+                        @Html.ValidationMessageFor(model => model.Other, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Nearby, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Nearby, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Nearby, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ListedBy, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.ListedBy, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ListedBy, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ContactName, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.ContactName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ContactName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.TypContact, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.TypContact, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.TypContact, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            
+            <div class="form-group">
+                <label class="control-label col-md-2">Plan: </label>
+                <div>
+                    <input type="file" id="planLink" name="planLink" multiple="multiple" accept=".jpg,.png,.gif" onchange="show(this)" />
+
+                    <div id="dvPreview" class="img-responsive"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.vidLink, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.vidLink, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.vidLink, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+               
+                <div class="form-group">
+                    <label class="control-label col-md-2">Image: </label>
+                    <div>
+                        <input type="file" id="files" name="files" multiple="multiple" accept=".jpg,.png,.gif" onchange="show(this)"/>
+                      
+                       <div id="dvPreview" class="img-responsive"></div>
+                    </div>
+                </div>
+          
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+    </form>
+    
+        <div>
+            @Html.ActionLink("Back to List", "Map")
+        </div>
+
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+        }
+    <script language="javascript" type="text/javascript">
+        $(document).ready(function () {
+            var fileUpload = document.getElementById("files");           
+            fileUpload.onchange = function () {
+                if (typeof (FileReader) != "undefined") {
+                    var dvPreview = document.getElementById("dvPreview");
+                    dvPreview.innerHTML = "";
+                    var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.jpg|.jpeg|.gif|.png|.bmp)$/;
+                    for (var i = 0; i < fileUpload.files.length; i++) {
+                        var file = fileUpload.files[i];
+                        if (regex.test(file.name.toLowerCase())) {
+                            var reader = new FileReader();
+                            reader.onload = function (e) {
+                                var img = document.createElement("IMG");
+                                img.height = "180";
+                                //img.width = "180";
+                                img.src = e.target.result;
+                                img.class = "form-control";
+                                dvPreview.appendChild(img);
+                            }
+                            reader.readAsDataURL(file);
+                        } else {
+                            alert(file.name + " is not a valid image file.");
+                            dvPreview.innerHTML = "";
+                            return false;
+                        }
+                    }
+                } else {
+                    alert("This browser does not support HTML5 FileReader.");
+                }
+            }   
+        });
+    </script>
+</body>

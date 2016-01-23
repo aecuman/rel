@@ -1,0 +1,101 @@
+﻿@model IEnumerable<Relync.Models.PropertyList>
+
+@{
+    ViewBag.Title = "Map";
+    Layout = "~/Views/Shared/_pptylyout.cshtml";
+}
+<script type="text/javascript">
+    var map = null;
+
+    function GetMap()
+    {
+        var  pushpinInfos = @Html.Raw(
+Json.Encode(
+((Model.ToList().Select(user => new
+{
+    user.Id,
+    user.lat,
+    user.lon,
+    user.Bedrooms,
+    user.Rooms,
+    user.Baths,
+    user.Price,
+    user.pptyType,
+    user.ImageList
+        })
+       )
+    )));
+        var infoboxLayer = new Microsoft.Maps.EntityCollection();
+        var pinLayer = new Microsoft.Maps.EntityCollection();
+        // Initialize the map
+        map = new Microsoft.Maps.Map(document.getElementById("mapDiv"), { credentials: "Aio4TWHf6U2isW-y1tzY5WUCBO778t2qso2XUKDj3TX8ecNxywEUQ0nl3dCDMrPx",mapTypeId: Microsoft.Maps.MapTypeId.road,
+            showMapTypeSelector: false /*center: new Microsoft.Maps.Location(0.3136, 32.5811), zoom: 16, showScalebar: false,enableSearchLogo:false,showMapTypeSelector:false,showDashboard:false*/ });
+       
+        // Create the info box for the pushpin
+        pinInfobox = new Microsoft.Maps.Infobox(new Microsoft.Maps.Location(0, 0), { visible: false });
+        infoboxLayer.push(pinInfobox);
+
+        var locs = [];
+        for (var i = 0 ; i < pushpinInfos.length; i++) {
+        locs[i] = new Microsoft.Maps.Location(pushpinInfos[i].lat, pushpinInfos[i].lon);
+        var pin = new Microsoft.Maps.Pushpin(locs[i]);
+        pin.Title ="Price:"+" "+  String(pushpinInfos[i].Price);
+        pin.Description ='<b>'+"For:"+'</b>'+pushpinInfos[i].pptyType+'<br>'+"Bedrooms:"+pushpinInfos[i].Bedrooms+'</br>'+"Baths:"+String(pushpinInfos[i].Baths)+'</br>'+'<b>'+'<a href="/Property/Details/'+pushpinInfos[i].Id+'">View House</a>'+'</b>'+'<img src=/Images/GalleryImages/thumbs/'+pushpinInfos[i].ImageList;
+        pinLayer.push(pin);
+       
+        Microsoft.Maps.Events.addHandler(pin, 'mouseover', displayInfobox);
+        Microsoft.Maps.Events.addHandler(pin, 'click', displayInfobox);
+        Microsoft.Maps.Events.addHandler(pinInfobox, 'mouseleave', hideInfobox);
+
+        }
+
+        map.entities.push(pinLayer);
+        map.entities.push(infoboxLayer);
+    
+        var bestview = Microsoft.Maps.LocationRect.fromLocations(locs);
+        map.setView({ center: bestview.center, zoom: 14 });
+        }
+
+        function displayInfobox(e) {
+        pinInfobox.setOptions({ title: e.target.Title, description: e.target.Description, visible: true, offset: new Microsoft.Maps.Point(0, 25) });
+        pinInfobox.setLocation(e.target.getLocation());
+        }
+
+        function hideInfobox(e) {
+        pinInfobox.setOptions({ visible: false });
+        }
+
+
+</script>
+
+        <body onload="GetMap();">
+         
+               
+            <div class="row">
+                @using (Html.BeginForm("Map", "Property", FormMethod.Post, new { @encType = "multipart/form-data" }))
+                {
+                    <p>
+                        @Html.DropDownList("typ", new List<SelectListItem>
+    {
+    new SelectListItem(){Text="Select Type...",Value=""},
+    new SelectListItem(){Text="Rent",Value="RENT"},
+    new SelectListItem(){Text="Sale",Value="SALE"},
+
+    }, new { @class = "input-landing", @style = "width:230px" })
+
+
+
+                        <button type="submit" class="btn btn-default input-landing"><i class="glyphicon glyphicon-search"></i></button>
+
+                    </p>
+                }
+
+                </div>
+
+
+                <div id='mapDiv' class="jumbotron" style="position:relative; height:500px"></div>
+
+
+
+              
+</body>

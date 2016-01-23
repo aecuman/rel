@@ -1,0 +1,178 @@
+﻿@model IEnumerable<Relync.Models.PropertyList>
+
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>List</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.pptyType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.District)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Suburb)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Place)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Bedrooms)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Baths)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Area)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lon)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Availability)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Facts)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Rooms)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Construction)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Other)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nearby)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ListedBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ContactName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TypContact)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Phone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Contact)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.pptyType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.District)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Suburb)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Place)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Bedrooms)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Baths)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Area)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.lat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.lon)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Availability)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Facts)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Rooms)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Construction)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Other)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nearby)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ListedBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContactName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TypContact)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Phone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.EditorFor(modelitem => item.Availability)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Contact)
+        </td>
+        <td>
+<input type="submit" />
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
