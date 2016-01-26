@@ -833,7 +833,7 @@ pre {
 .row {
     margin-right: -15px;
     margin-left: -15px;
-    padding: 50px;
+    padding-top: 25px;
 }
 
     .row:before,

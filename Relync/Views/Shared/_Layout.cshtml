@@ -4,8 +4,11 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Relync.Ug</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
     <script charset="UTF-8" type="text/javascript" src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0">
     </script>
+
     @{    @Html.Partial("GoogleAnalytics")}
    
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
@@ -42,10 +45,10 @@
     </div>
     <div class="container body-content">
         @RenderBody()
-        <hr />
+     
     </div>
         <footer>
-            <div class="row footer-banner">
+            <div class="row">
                 <div class="col-md-4 text-center">
                     
                         <h5>CONTACT US</h5>
@@ -88,16 +91,20 @@
               
                 
             </div>
-            <ul class="col-md-4 text-center ">
-                <h5>SOCIAL</h5>
-                <li>
-                    <a href="http://facebook.com/relyncug"><span class="fui-facebook"><span class="btn-tip"></span>Facebook</span></a>
-                </li>
-                <br />
-                <li>
-                    <a href="http://twitter.com/RelyncUg"><span class="fui-twitter"><span class="btn-tip"></span>Twitter</span></a>
-                </li>
+                <div class="footer-banner">
+                    <ul class="col-md-4  text-center">
+
+                        <h5>SOCIAL</h5>
+                        <li>
+                            <a href="http://facebook.com/relyncug"><span class="fui-facebook"><span class="btn-tip"></span>Facebook</span></a>
+                        </li>
+                        <br />
+                        <li>
+                            <a href="http://twitter.com/RelyncUg"><span class="fui-twitter"><span class="btn-tip"></span>Twitter</span></a>
+                        </li>
+
                     </ul>
+                </div>
     </div>
     <p class="text-center">&copy; @DateTime.Now.Year - Pesh&Dean (U)</p>
     </footer>

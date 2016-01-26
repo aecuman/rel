@@ -696,7 +696,7 @@ a.thumbnail.active {
   font-weight: normal;
   line-height: 1.4;
   border: none;
-  border-radius: 4px;
+ 
   -webkit-transition: border .25s linear, color .25s linear, background-color .25s linear;
           transition: border .25s linear, color .25s linear, background-color .25s linear;
 
@@ -3997,7 +3997,6 @@ fieldset[disabled] .input-group-btn .btn-default.active {
   margin-bottom: 20px;
   text-align: center;
   background-color: #eff0f2;
-  border-radius: 6px;
   }
 .tile .tile-hot-ribbon {
   position: absolute;

@@ -29,8 +29,7 @@ Json.Encode(
         var infoboxLayer = new Microsoft.Maps.EntityCollection();
         var pinLayer = new Microsoft.Maps.EntityCollection();
         // Initialize the map
-        map = new Microsoft.Maps.Map(document.getElementById("mapDiv"), { credentials: " Aio4TWHf6U2isW-y1tzY5WUCBO778t2qso2XUKDj3TX8ecNxywEUQ0nl3dCDMrPx",mapTypeId: Microsoft.Maps.MapTypeId.road,
-            showMapTypeSelector: false /*center: new Microsoft.Maps.Location(0.3136, 32.5811), zoom: 16, showScalebar: false,enableSearchLogo:false,showMapTypeSelector:false,showDashboard:false*/ });
+        map = new Microsoft.Maps.Map(document.getElementById("mapDiv"), { credentials: " Aio4TWHf6U2isW-y1tzY5WUCBO778t2qso2XUKDj3TX8ecNxywEUQ0nl3dCDMrPx",mapTypeId: Microsoft.Maps.MapTypeId.road,center: new Microsoft.Maps.Location(0.3136, 32.5811), zoom: 16, showScalebar: false,enableSearchLogo:false,showMapTypeSelector:false,showDashboard:false});
        
         // Create the info box for the pushpin
         pinInfobox = new Microsoft.Maps.Infobox(new Microsoft.Maps.Location(0, 0), { visible: false });
@@ -39,7 +38,7 @@ Json.Encode(
         var locs = [];
         for (var i = 0 ; i < pushpinInfos.length; i++) {
         locs[i] = new Microsoft.Maps.Location(pushpinInfos[i].lat, pushpinInfos[i].lon);
-        var pin = new Microsoft.Maps.Pushpin(locs[i]);
+        var pin = new Microsoft.Maps.Pushpin(locs[i], { width: 50, height: 50});
         pin.Title ="Price:"+" "+  String(pushpinInfos[i].Price);
         pin.Description ='<b>'+"For:"+'</b>'+pushpinInfos[i].pptyType+'<br>'+"Bedrooms:"+pushpinInfos[i].Bedrooms+'</br>'+"Baths:"+String(pushpinInfos[i].Baths)+'</br>'+'<b>'+'<a href="/Property/Details/'+pushpinInfos[i].Id+'">View House</a>'+'</b>'+'<img src=/Images/GalleryImages/thumbs/'+pushpinInfos[i].ImageList;
         pinLayer.push(pin);

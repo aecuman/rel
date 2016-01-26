@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace Relync.Models
 {
@@ -40,6 +41,7 @@ namespace Relync.Models
         [BsonElement("availability")]
         public bool Availability { get; set; }
         [BsonElement("generaldescription")]
+        [AllowHtml]
         public string GDescription { get; set; }
         [BsonElement("facts")]
         public string Facts { get; set; }

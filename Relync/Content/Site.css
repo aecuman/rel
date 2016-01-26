@@ -29,3 +29,8 @@ textarea {
 .left{
     float:left;
 }
+.bgland{
+    background-image:url(/Images/bn.jpg);
+   
+    color:#F1C40F ;text-align:center;padding:60px;
+}
