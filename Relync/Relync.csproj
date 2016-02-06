@@ -300,6 +300,19 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\Abtpic.jpg" />
+    <Content Include="Images\bn.jpg" />
+    <Content Include="Images\GalleryImages\Plans\1.jpg.jpg" />
+    <Content Include="Images\GalleryImages\thumbs\08b4fe42-ec7e-4775-8d39-050adb2e01e9.jpg" />
+    <Content Include="Images\GalleryImages\thumbs\23cb957c-2543-42ff-9f57-8ee406211e9c.jpg" />
+    <Content Include="Images\GalleryImages\thumbs\29cb4d5c-3a3e-4344-8b46-adce62bcff9f.jpg" />
+    <Content Include="Images\GalleryImages\thumbs\2bfb1747-823f-4a03-b77b-e6e8e504681a.jpg" />
+    <Content Include="Images\GalleryImages\thumbs\31c62bde-101a-4a20-aa8c-c0138dd9ba5a.jpg" />
+    <Content Include="Images\GalleryImages\thumbs\4965a6eb-d93d-477b-b69c-ee8622a0129c.jpg" />
+    <Content Include="Images\GalleryImages\thumbs\9452b66d-5cfa-4df7-9568-22f7b0922770.jpg" />
+    <Content Include="Images\GalleryImages\thumbs\a06c149a-2409-4eb6-ab2f-f1c3078d7a30.jpg" />
+    <Content Include="Images\GalleryImages\thumbs\d425364c-0f3d-4b1c-bdca-0e481195d102.jpg" />
+    <Content Include="Images\GalleryImages\thumbs\f3b20314-3c5a-4e0b-9094-5e1ca74fa1c9.jpg" />
+    <Content Include="Images\GalleryImages\thumbs\f449548b-552e-4ea3-975a-f17bca422281.jpg" />
     <Content Include="Images\Icons\clipboard.svg" />
     <Content Include="Images\Icons\map.svg" />
     <Content Include="Images\Icons\VIDEO-icon.png" />
@@ -399,8 +412,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Images\GalleryImages\Plans\" />
-    <Folder Include="Images\GalleryImages\thumbs\" />
     <Folder Include="Views\Contact\" />
   </ItemGroup>
   <ItemGroup>
