@@ -28,6 +28,13 @@
             }
         }
     })
+    $('#info').affix({
+        offset:{
+            bottom:($('#footer').outterHeight(true) +
+                $('.application').outterHeight(true))+
+                40
+        }
+    });
     });
     function GetMap(){
         // Initialize the map
@@ -41,6 +48,7 @@
         map.entities.push(pin);
         // Center the map on the location
         map.setView({ center: loc, zoom: 16 });
+       
     }
 </script>
 <body onfocus="GetMap();">
@@ -48,7 +56,7 @@
 
 
 
-    <div class="owl-carousel owl-theme">
+    <div class="col-lg-12 owl-carousel owl-theme">
         @foreach (var items in Model.ImageList)
         {
             <div class="item">
@@ -64,10 +72,10 @@
     </div>
   
 
-    <div class="row">
-        <div class="col-lg-8 palette palette-asbestos">
-            <div class="col-lg-6 left">
-                <dl class="palette palette-asbestos">
+    <div class="row ">
+        <div class="col-lg-8">
+            <div class="col-lg-offset-2 left" >
+                <dl>
                     <dt>
                         @Html.DisplayFor(model => model.Suburb)
                     </dt>
@@ -80,8 +88,9 @@
                         </dl>
              
             </div>
-            <div class="col-lg-2 text-right right ">
-                <dl class="palette palette-sun-flower">
+            <div class="col-lg-2 text-right right" style="border-left: solid #F1C40F 1px";>
+                <dl>
+                    <br />
                     <dt> @Html.DisplayFor(model => model.Price)</dt>
                     <dd>
                         <small>per month</small>
@@ -90,114 +99,122 @@
             </div>
             
         </div>
-     
-                <dl class="dl-horizontal col-lg-8">
-                    <dd>
-                        <b> @Html.DisplayName("General Description")</b>
-                       
-                    </dd>
-                    <dd>
-                        @Html.DisplayFor(model => model.GDescription)
-                    </dd>
+        </div>
+    <div class="row">
+       
+            <dl class="dl-horizontal col-lg-8">
+                <dd>
+                    <b> @Html.DisplayName("General Description")</b>
 
-                    <dt>
-                        @Html.DisplayNameFor(model => model.Price)
-                    </dt>
+                </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.GDescription)
+                </dd>
 
-                    <dd>
-                        @Html.DisplayFor(model => model.Price)
-                    </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Price)
+                </dt>
 
-
-
-                    <dt>
-                        @Html.DisplayNameFor(model => model.Facts)
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.Facts)
-                    </dd>
-
-                    <dt>
-                        @Html.DisplayNameFor(model => model.Rooms)
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.Rooms)
-                    </dd>
-
-                    <dt>
-                        @Html.DisplayNameFor(model => model.Construction)
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.Construction)
-                    </dd>
-
-                    <dt>
-                        @Html.DisplayNameFor(model => model.Other)
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.Other)
-                    </dd>
-
-                    <dt>
-                        @Html.DisplayNameFor(model => model.Nearby)
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.Nearby)
-                    </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Price)
+                </dd>
 
 
 
-                    <dt>
-                        @Html.DisplayNameFor(model => model.Date)
-                    </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Facts)
+                </dt>
 
-                    <dd>
-                        @Html.DisplayFor(model => model.Date)
-                    </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Facts)
+                </dd>
 
-                    <dt>
-                        @Html.DisplayNameFor(model => model.ContactName)
-                    </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Rooms)
+                </dt>
 
-                    <dd>
-                        @Html.DisplayFor(model => model.ContactName)
-                    </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Rooms)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Construction)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Construction)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Other)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Other)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Nearby)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Nearby)
+                </dd>
 
 
 
-                    <dt>
-                        @Html.DisplayName("Call")@Html.DisplayFor(model => model.ListedBy)
-                    </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Date)
+                </dt>
 
-                    <dd>
-                        @Html.DisplayFor(model => model.Phone)
-                    </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Date)
+                </dd>
 
-                    <dt>
-                        @Html.DisplayNameFor(model => model.Email)
-                    </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.ContactName)
+                </dt>
 
-                    <dd>
-                        @Html.DisplayFor(model => model.Email)
-                    </dd>
-                    <dt>
-                        @Html.DisplayName("Video Tour")
-                    </dt>
-                    <dd class="embed-responsive embed-responsive-16by9">
-                        <iframe class="embed-responsive-item" src="http://www.youtube.com/embed/@Html.DisplayFor(mode=>mode.vidLink)?rel=0" frameborder="0" allowfullscreen></iframe>  
-                    </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.ContactName)
+                </dd>
 
 
-                </dl>
-                <div >
-                    
-                </div>
-          
+
+               
+                <dt>
+                    @Html.DisplayNameFor(model => model.Email)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Email)
+                </dd>
+                <dt>
+                    @Html.DisplayName("Video Tour")
+                </dt>
+                <dd class="embed-responsive embed-responsive-16by9">
+                    <iframe class="embed-responsive-item" src="http://www.youtube.com/embed/@Html.DisplayFor(mode=>mode.vidLink)?rel=0" frameborder="0" allowfullscreen></iframe>
+                </dd>
+
+
+            </dl>
+            <div class="col-lg-4 right" data-spy="affix" data-offset-top="1000">
+
+            <dl>
+                <dt class="text-center ">
+                    @Html.DisplayName("Please Call")&nbsp;@Html.DisplayFor(model => model.ListedBy)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Phone)
+                </dd>
+
+            </dl>
+        </div>
+            <div>
+
+            </div>
+
         </div>
 
 

@@ -2,6 +2,9 @@
     padding-top: 50px;
     padding-bottom: 20px;
 }
+.abt{
+        height:372px;
+}
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
@@ -34,3 +37,50 @@ textarea {
    
     color:#F1C40F ;text-align:center;padding:60px;
 }
+.demo-row {
+  margin-bottom: 20px;
+  }
+.demo-row .demo-heading-note,
+.demo-row .demo-text-note {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  display: block;
+  width: 260px;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 13px;
+  color: #c0c1c2;
+  }
+.demo-row .demo-text-note {
+  top: 10px;
+  bottom: auto;
+  }
+.demo-row.typography-row .demo-content {
+  float: none;
+  width: auto;
+  clear: both;
+  }
+.demo-row.typography-row .demo-type-example {
+  position: relative;
+  padding-left: 25%;
+  margin-bottom: 40px;
+  }
+.demo-section-title {
+  margin: 10px 0;
+  font: 900 32px/40px "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+.demo-panel-title {
+  padding-top: 20px;
+  margin: 2px 0 20px;
+  font: bold 23px/40px "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+.demo-panel-title small {
+  font-size: inherit;
+  font-weight: 400;
+  color: #798795;
+  }
+.demo-navigation {
+  margin-top: -10px;
+  margin-bottom: -4px;
+  }

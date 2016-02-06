@@ -6,8 +6,7 @@
     <title>@ViewBag.Title - Relync.Ug</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
-    <script charset="UTF-8" type="text/javascript" src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0">
-    </script>
+   
 
     @{    @Html.Partial("GoogleAnalytics")}
    
@@ -53,9 +52,7 @@
                     
                         <h5>CONTACT US</h5>
 
-                        Relync
-
-                        <br>
+                      
                         P.O. Box 11289
 
                         <br>
@@ -65,7 +62,7 @@
                         Bukoto Kezilone Rd.
 
                         <br>
-                        Tel: 256 704756440/ 256 773038377
+                        Tel: +256 704756440/ +256 773038377
 
                         <br>
                         relyncug@gmail.com
@@ -77,8 +74,8 @@
             <div class="col-md-4 text-center">
                 <h5>SUPPORT</h5>
              
-                    About Us
-
+                   
+                @Html.ActionLink("About Us", "About", "Home")
                
                 <br>
                     Cookie Policy
@@ -91,19 +88,21 @@
               
                 
             </div>
-                <div class="footer-banner">
-                    <ul class="col-md-4  text-center">
+                <div>
+
+                    <div class="col-md-4  text-center">
 
                         <h5>SOCIAL</h5>
-                        <li>
-                            <a href="http://facebook.com/relyncug"><span class="fui-facebook"><span class="btn-tip"></span>Facebook</span></a>
-                        </li>
-                        <br />
-                        <li>
-                            <a href="http://twitter.com/RelyncUg"><span class="fui-twitter"><span class="btn-tip"></span>Twitter</span></a>
-                        </li>
+                        <ul class="social-network social-circle">
+                           
+                            <li><a href="http://facebook.com/relyncug" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="http://twitter.com/RelyncUg" class="icoTwitter" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#" class="icoGoogle" title="Google +"><i class="fa fa-google-plus"></i></a></li>
+                            <li><a href="#" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                       
 
-                    </ul>
+                    </div>
                 </div>
     </div>
     <p class="text-center">&copy; @DateTime.Now.Year - Pesh&Dean (U)</p>

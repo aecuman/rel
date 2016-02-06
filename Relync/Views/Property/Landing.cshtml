@@ -14,7 +14,11 @@
     }
 </style>
 
-
+<script>
+   function bounc(){
+       $('#tile').addClass('animated bounceOutLeft');
+    }
+</script>
 
 
 @{
@@ -48,12 +52,12 @@
 
 
 <div class="row">
-    <div class="col-md-4">
-        <div class="tile">
+    <div id="tile" class="col-md-4">
+        <div  class="tile" onfocus="bounc();">
             <img src="~/Images/Icons/clipboard.svg" alt="Clipboard" class="tile-image big-illustration">
             <h3 class="tile-title">Professional Inspection</h3>
             <p>
-                Inspected by trained valuers
+                Inspected by trained Realtors
             </p>
             
         </div>

@@ -1,5 +1,7 @@
 ﻿@model Relync.Models.PropertyList
 <script src="~/Scripts/editor.js"></script>
+<script charset="UTF-8" type="text/javascript" src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0">
+</script>
 <link href="~/Content/editor.css" type="text/css" rel="stylesheet">
 
 <script type="text/javascript">
@@ -15,7 +17,7 @@ function GetMap()
     var pin = new Microsoft.Maps.Pushpin(center, { width: 50, height: 50, draggable: true });
     Microsoft.Maps.Events.addHandler(pin, 'click', displayLatLong);
     map.entities.push(pin);
-   
+
     $("#GDescription").Editor();
     $("#Facts").Editor();
     $("#Construction").Editor();
@@ -25,7 +27,7 @@ function GetMap()
 function displayLatLong(e) {
     if (e.targetType == "pushpin") {
         var pinLoc = e.target.getLocation();
-     
+
         document.getElementById("lat").value = pinLoc.latitude;
         document.getElementById("lon").value = pinLoc.longitude;
 

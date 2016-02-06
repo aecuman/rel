@@ -906,8 +906,8 @@ pre {
 .col-lg-12 {
     position: relative;
     min-height: 1px;
-    padding-right: 15px;
-    padding-left: 15px;
+    padding-right: 8px;
+    padding-left: 8px;
 }
 
 .col-xs-1,
@@ -6500,7 +6500,9 @@ button.close {
 .affix {
     position: fixed;
 }
-
+.affix-top {
+   top:20px;
+}
 @-ms-viewport {
     width: device-width;
 }

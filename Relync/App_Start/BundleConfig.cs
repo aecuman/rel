@@ -25,6 +25,7 @@ namespace Relync
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/animate.css",
                       "~/Content/site.css",
                       "~/Content/owl.carousel.css",
                       "~/Content/flat-ui.css"));

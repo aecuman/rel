@@ -31,7 +31,7 @@ namespace Relync.Models
             MongoClient mongoClient = new MongoClient(connection);
            //  _server = mongoClient.GetDatabase("propertydb");
             // MongoDatabase db = mongoClient.GetDatabase("propertydb"); 
-            //_database = mongoClient.GetServer().GetDatabase("propertydb");
+           //_database = mongoClient.GetServer().GetDatabase("propertydb");
             _database = mongoClient.GetServer().GetDatabase("appharbor_xlnbpk5k");
             _property = _database.GetCollection<PropertyList>("propertylist");
             // IndexKeysBuilder Key = IndexKeys.GeoSpatial("list");
