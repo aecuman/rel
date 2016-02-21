@@ -1,0 +1,11 @@
+﻿
+@model Relync.Models.Comment
+
+<div>
+    <strong>By @Model.Name at @Model.Date.ToLocalTime().ToString()</strong>
+    (<a class="remove-comment" data-id="@Model.commentID" href="javascript:void()">Remove</a>)
+
+    <p>
+        @Model.Cmmnt
+    </p>
+</div>

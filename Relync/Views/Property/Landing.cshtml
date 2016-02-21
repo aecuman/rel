@@ -1,24 +1,7 @@
 ﻿@model Relync.Models.PropertyList
-<link href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet"/>
-<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
-<script type="text/javascript" src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
-<link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.10/themes/redmond/jquery-ui.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="~/Content/animate.css">
 
-<style type="text/css">
-    .ui-autocomplete-loading {
-        background: white url('/Images/ui-anim_basic_16x16.gif') right center no-repeat;
-    }
 
-    #searchBox {
-        width: 25em;
-    }
-</style>
-
-<script>
-   function bounc(){
-       $('#tile').addClass('animated bounceOutLeft');
-    }
-</script>
 
 
 @{
@@ -27,33 +10,34 @@
 }
 
 <div class="jumbotron landing">
-    <div class="bgpic" style="padding:40px;">
-        <p class="text-center"><b>Find a place to call home</b></p>
+    <div  style="padding:40px;">
+        <p class="text-center"><h4 class="text-center reduce">Navigate Map to View Properties</h4></p>
         <div class="tab-content text-center">
-        
+
             <div id="tabr1" class="tab">
                 @using (Html.BeginForm("Landing", "Property", FormMethod.Post, new { @encType = "multipart/form-data" }))
                 {
-                    <a href="~/Property/Map?pptyType=RENT" class="btn btn-embossed btn-warning btn-wide"><span class="fui-home"></span><span class="btn-tip"></span>Rent</a>
-                    <a class="btn btn-embossed btn-warning btn-wide"><span class="fui-home"></span><span class="btn-tip"></span>Sale</a>
+                   
+                    <a href="~/Property/Map" class="icn btn btn-wide animated zoomInDown animated infinite bounce"><span class="fui fui-location"></span></a>
+                   
 
 
                 }
             </div>
-           
+
 
         </div>
     </div>
 </div>
-<div style="background-color:#EFF0F2;text-align:center;padding:24px;">
+<div style="background-color:#FFFFFF;text-align:center;padding:24px;">
     <p>With a few clicks find access to the most detailed property directory</p>
 
 </div>
 
 
-<div class="row">
+<div class="row" >
     <div id="tile" class="col-md-4">
-        <div  class="tile" onfocus="bounc();">
+        <div  class="tile animated slideInRight">
             <img src="~/Images/Icons/clipboard.svg" alt="Clipboard" class="tile-image big-illustration">
             <h3 class="tile-title">Professional Inspection</h3>
             <p>
@@ -63,15 +47,15 @@
         </div>
         </div>
     <div class="col-md-4">
-        <div class="tile">            
-            <img src="~/Images/Icons/VIDEO-icon.png" alt="Vid" class="tile-image big-illustration">
+        <div class="tile animated slideInUp">            
+            <img src="~/Images/Icons/vid.svg" alt="Vid" class="tile-image big-illustration">
             <h3 class="tile-title">Video Tour</h3>
              <p>Watc a tour of the property.</p>
             
         </div>
     </div>
     <div class="col-md-4">
-        <div class="tile">
+        <div class="tile animated slideInLeft">
             <img src="~/Images/Icons/map.svg" alt="Map" class="tile-image big-illustration">
             <h3 class="tile-title">Site Map</h3>
             <p>View location maps and floor plans.</p>
@@ -81,8 +65,8 @@
 
    
 </div>
-<div class="tagsinput-primary palette palette-alizarin" style="font-weight:bolder;text-align:center;padding:24px;">
-    <p>MORE THAN JUST PROPERTY</p>
+<div class="tagsinput-primary palette palette-asbestos" style="font-weight:bolder;text-align:center;padding:24px;">
+    <p> DREAM IT, FIND IT, OWN IT</p>
 
 </div>
 <div class="tagsinput-primary bgland lead">

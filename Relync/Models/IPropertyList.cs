@@ -1,3 +1,4 @@
+using MongoDB.Bson;
 using MongoDB.Driver;
 using System.Collections.Generic;
 using System.Web;
@@ -13,8 +14,9 @@ namespace Relync.Models
         bool UpdateProperty(string Id, PropertyList item);
         PropertyList SaveProperty(PropertyList item);
         MongoDatabase Getdb();
-     
+        Comment AddCmmnt(string Id,Comment cmt);
 
-
+        void RemoveComment(string Id, ObjectId commentID);
+        IEnumerable<Comment> GetComments(string Id, int skip, int limit, int totalComments);
     }
 }

@@ -364,11 +364,11 @@ body {
   font-family: "Lato", Helvetica, Arial, sans-serif;
   font-size: 18px;
   line-height: 1.72222;
-  color: #34495e;
+  color: #545454;
  
   }
 a {
-  color: #16a085;
+  color: #F1C40F;
   text-decoration: none;
   -webkit-transition: .25s;
           transition: .25s;
@@ -1308,7 +1308,7 @@ label {
   line-height: 1.467;
   color: #34495e;
   border: 2px solid #bdc3c7;
-  border-radius: 6px;
+ 
   box-shadow: none;
   -webkit-transition: border .25s linear, color .25s linear, background-color .25s linear;
           transition: border .25s linear, color .25s linear, background-color .25s linear;
@@ -3996,7 +3996,7 @@ fieldset[disabled] .input-group-btn .btn-default.active {
   padding: 14px;
   margin-bottom: 20px;
   text-align: center;
-  background-color: #eff0f2;
+  background-color: #FFFFFF;
   }
 .tile .tile-hot-ribbon {
   position: absolute;
@@ -6263,6 +6263,9 @@ a.socialIcon:hover, .socialHoverClass {
 	-o-transition: all 0.2s;
 	-ms-transition: all 0.2s;
 	transition: all 0.2s;
+}
+.icn{
+    font-size:90px;
 }
 .social-circle i {
 	color: #fff;

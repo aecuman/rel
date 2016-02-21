@@ -18,6 +18,7 @@ namespace Relync
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Property", action = "Landing", id = UrlParameter.Optional }
             );
+            
         }
     }
 }

@@ -15,6 +15,7 @@ namespace Relync.Models
         {
             PriceHistory = new List<HistoryModel>();
             ImageList = new List<ImageGallery>();
+            Commnt = new List<Comment>();
         }
       
         [BsonId]
@@ -73,6 +74,8 @@ namespace Relync.Models
         public List<ImageGallery>ImageList { get; set; }
         public string planLink { get; set; }
         public string vidLink { get; set; }
+        public List<Comment> Commnt { get; set; }
+        public int TotalComments { get; set; }
 
 
     }
@@ -103,6 +106,15 @@ namespace Relync.Models
         public string ThumbPath { get; set; }
     }
 
-
+    public class Comment
+    {
+        [BsonId]
+        public ObjectId commentID { get; set; }
+        [Required]
+        public string Name { get; set; }
+        [Required]
+        public string Cmmnt { get; set; }
+        public DateTime Date { get; set; }
+    }
 
 }

@@ -18,11 +18,7 @@ function GetMap()
     Microsoft.Maps.Events.addHandler(pin, 'click', displayLatLong);
     map.entities.push(pin);
 
-    $("#GDescription").Editor();
-    $("#Facts").Editor();
-    $("#Construction").Editor();
-    $("#Other").Editor();
-    $("#Rooms").Editor();
+    
 }
 function displayLatLong(e) {
     if (e.targetType == "pushpin") {

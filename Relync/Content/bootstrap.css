@@ -831,8 +831,8 @@ pre {
     }
 
 .row {
-    margin-right: -15px;
-    margin-left: -15px;
+   
+    
     padding-top: 25px;
 }
 
@@ -1937,7 +1937,7 @@ input[type="number"]::-webkit-inner-spin-button {
     vertical-align: middle;
     background-color: #ffffff;
     border: 1px solid #cccccc;
-    border-radius: 4px;
+   
     -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
     -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
@@ -6499,9 +6499,11 @@ button.close {
 
 .affix {
     position: fixed;
+   
+    top:27px;
 }
 .affix-top {
-   top:20px;
+   
 }
 @-ms-viewport {
     width: device-width;
@@ -6511,15 +6513,15 @@ button.close {
     @-ms-viewport {
         width: 320px;
     }
-
+   .reduce {
+    font-size: 30px;
+}
     .body-content {
         padding-left: 10px;
         padding-right: 10px;
     }
 
-    .row {
-        padding: 15px;
-    }
+    
 
     .logo {
         margin-left: 38%;
@@ -6531,7 +6533,7 @@ button.close {
         line-height: 2.1428571435;
         color: inherit;
     }
-
+   
     .small {
         max-width: 168px;
     }
@@ -6631,6 +6633,9 @@ button.close {
         .bgpic {
             height: 240px;
         }
+         h2, .h2{
+        font-size:25px;
+    }
 
         .visible-sm.visible-xs {
             display: block !important;

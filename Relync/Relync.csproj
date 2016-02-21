@@ -315,7 +315,7 @@
     <Content Include="Images\GalleryImages\thumbs\f449548b-552e-4ea3-975a-f17bca422281.jpg" />
     <Content Include="Images\Icons\clipboard.svg" />
     <Content Include="Images\Icons\map.svg" />
-    <Content Include="Images\Icons\VIDEO-icon.png" />
+    <Content Include="Images\Icons\vid.svg" />
     <Content Include="Images\landing.jpg" />
     <Content Include="Images\logo.png" />
     <Content Include="Images\ui-anim_basic_16x16.gif" />
@@ -409,6 +409,9 @@
     <Content Include="Views\Shared\GoogleAnalytics.cshtml" />
     <Content Include="Views\Shared\_pptylyout.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Property\AddComment.cshtml" />
+    <Content Include="Views\Property\CommentList.cshtml" />
+    <Content Include="Views\Property\Comment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

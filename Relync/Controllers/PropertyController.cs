@@ -1,4 +1,5 @@
-﻿using Relync.Models;
+﻿using MongoDB.Bson;
+using Relync.Models;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -13,9 +14,9 @@ namespace Relync.Controllers
     public class PropertyController : Controller
     {
         public static readonly IPropertyList _property = new PropertyListRepository();
-      
-       
-        public ActionResult Landing(string Typ,string locn,string px)
+
+
+        public ActionResult Landing(string Typ, string locn, string px)
         {
             if (!string.IsNullOrEmpty(Typ) && !string.IsNullOrEmpty(locn) || !string.IsNullOrEmpty(px))
             {
@@ -24,8 +25,8 @@ namespace Relync.Controllers
                 TempData["px"] = px;
                 return RedirectToAction("Map");
             }
-                return View();
-            
+            return View();
+
         }
         public Size NewImgSz(Size imgSz, Size newSz)
         {
@@ -41,15 +42,15 @@ namespace Relync.Controllers
                 {
                     tempVal = newSz.Width / (imgSz.Width * 1.0);
                 }
-                    finalSz = new Size((int)(tempVal * imgSz.Width), (int)(tempVal * imgSz.Height));
-                
+                finalSz = new Size((int)(tempVal * imgSz.Width), (int)(tempVal * imgSz.Height));
+
             }
-            else  finalSz = imgSz;
+            else finalSz = imgSz;
 
 
 
             return finalSz;
-          
+
 
         }
         private void SaveToFolder(Image img, string fileName, string exte, Size Newsize, string pathToSave)
@@ -62,13 +63,12 @@ namespace Relync.Controllers
         }
         public ActionResult Map(string typ)
         {
-           
             if (!string.IsNullOrEmpty(typ))
             {
                 try
                 {
-                    var _ppty = _property.GetAllProperties().Where(p =>p.pptyType.Contains(typ)&& p.Availability.Equals(true));
-                   
+                    var _ppty = _property.GetAllProperties().Where(p => p.pptyType.Contains(typ) && p.Availability.Equals(true));
+
 
                     return View(_ppty.ToList());
                 }
@@ -81,7 +81,7 @@ namespace Relync.Controllers
             }
             else
             {
-                return View(_property.GetAllProperties().AsEnumerable().Where(u=>u.Availability==true));
+                return View(_property.GetAllProperties().AsEnumerable().Where(u => u.Availability == true));
             }
         }
 
@@ -98,30 +98,34 @@ namespace Relync.Controllers
                     Id = ppt.Id,
                     Availability = ppt.Availability
                 };
-               /// ent.AddProperty(editor, null);
+                /// ent.AddProperty(editor, null);
             }
             return View(model);
         }
-            [HttpPost]
-            public ActionResult changeAvail(PropertyList model)
+        [HttpPost]
+        public ActionResult changeAvail(PropertyList model)
         {
             var selid = model.Id;
             var selctedppty = from x in _property.GetAllProperties()
                               where selid.Contains(x.Id)
                               select x;
-            foreach(var pp in selctedppty)
+            foreach (var pp in selctedppty)
             {
                 System.Diagnostics.Debug.WriteLine(string.Format("{0} {1}", pp.Id, pp.Availability));
             }
             return RedirectToAction("List");
         }
-            
+
         // GET: Property/Details/5
+      [HttpGet]
         public ActionResult Details(string Id)
         {
-         
+
             var p_detail = _property.GetProperty(Id);
-            
+            ViewBag.PostId = p_detail.Id;
+            ViewBag.TotalComments = p_detail.TotalComments;
+            ViewBag.LoadedComments = 5;
+
             return View(p_detail);
         }
 
@@ -133,17 +137,17 @@ namespace Relync.Controllers
 
         // POST: Property/Create
         [HttpPost]
-        public ActionResult Create(PropertyList property, IEnumerable<HttpPostedFileBase> files,HttpPostedFileBase planLink)
+        public ActionResult Create(PropertyList property, IEnumerable<HttpPostedFileBase> files, HttpPostedFileBase planLink)
         {
-            
+
             try
             {
-                if(files.Count()==0|| files.FirstOrDefault() == null)
+                if (files.Count() == 0 || files.FirstOrDefault() == null)
                 {
                     ViewBag.error = "Please choose a file";
                 }
-                List<ImageGallery> Piclist=new List<ImageGallery>();
-                foreach(var file in files)
+                List<ImageGallery> Piclist = new List<ImageGallery>();
+                foreach (var file in files)
                 {
                     var model = new ImageGallery();
                     if (Piclist.Count == 0)
@@ -158,30 +162,30 @@ namespace Relync.Controllers
                     var ext = Path.GetExtension(file.FileName).ToLower();
                     using (var img = Image.FromStream(file.InputStream))
                     {
-                        model.ThumbPath = string.Format("/Images/GalleryImages/thumbs/{0}{1}",model.Name,ext);
+                        model.ThumbPath = string.Format("/Images/GalleryImages/thumbs/{0}{1}", model.Name, ext);
                         model.ImagePath = string.Format("/Images/GalleryImages/{0}{1}", model.Name, ext);
                         //Save Large Size
                         SaveToFolder(img, model.Name, ext, new Size(600, 600), model.ImagePath);
                         //Save thumb Size
                         SaveToFolder(img, model.Name, ext, new Size(100, 100), model.ThumbPath);
                     }
-                   Piclist.Add(model);
-                  
+                    Piclist.Add(model);
+
                 }
                 var xt = Path.GetExtension(planLink.FileName).ToLower();
-                var pat = string.Format("/Images/GalleryImages/Plans/{0}{1}",planLink.FileName, xt);
-               
+                var pat = string.Format("/Images/GalleryImages/Plans/{0}{1}", planLink.FileName, xt);
+
                 using (var ig = Image.FromStream(planLink.InputStream))
                 {
-                    SaveToFolder(ig, planLink.FileName, xt, new Size(600, 600),pat);
+                    SaveToFolder(ig, planLink.FileName, xt, new Size(600, 600), pat);
                 }
                 property.planLink = pat;
                 property.ImageList = Piclist;
                 _property.AddProperty(property, files);
-               
+
                 // TODO: Add insert logic here
-                
-               
+
+
 
                 return RedirectToAction("Map");
             }
@@ -197,6 +201,16 @@ namespace Relync.Controllers
         {
             return View(_property.GetProperty(Id));
         }
+        public ActionResult Gallery(string Id)
+        {
+            var currentgal = _property.GetProperty(Id).ImageList;
+            foreach (var pc in currentgal)
+            {
+
+            }
+
+            return View(_property.GetProperty(Id));
+        }
 
         // POST: Property/Edit/5
         [HttpPost]
@@ -206,7 +220,7 @@ namespace Relync.Controllers
             {
                 // TODO: Add update logic here
                 _property.UpdateProperty(Id, item);
-             return RedirectToAction("Map");
+                return RedirectToAction("Map");
             }
             catch
             {
@@ -235,6 +249,60 @@ namespace Relync.Controllers
                 return View();
             }
         }
-       
+        [HttpPost]
+        public ActionResult AddComment(string Id, Comment cmt)
+        {
+            if (ModelState.IsValid)
+            {
+                var newComment = new Comment() {
+                    commentID = cmt.commentID,
+                    Name=cmt.Name,
+                    Cmmnt=cmt.Cmmnt,
+                    Date=cmt.Date
+
+                };
+                _property.AddCmmnt(Id, cmt);
+                ViewBag.PostId = Id;
+                return Json(
+
+                    new
+                    {
+                        Result="ok",
+                        CommentHtml=RenderPartialViewToString("Comment",newComment),
+                        FormHtml=RenderPartialViewToString("AddComment", new Comment())
+                    });
+            }
+            ViewBag.PostId = Id;
+            return View(_property.GetProperty(Id));
+
+        }
+        public ActionResult RemoveComment(string Id, ObjectId commentID)
+        {
+            _property.RemoveComment(Id, commentID);
+            return new EmptyResult();
+        }
+        [HttpPost]
+        public ActionResult CommentList(string Id,int skip,int limit,int totalComments)
+        {
+            ViewBag.TotalComments = totalComments;
+            ViewBag.LoadedComments = skip + limit;
+            return PartialView(_property.GetComments(Id, ViewBag.LoadedComments, limit, totalComments));
+        }
+        protected string RenderPartialViewToString(string viewName, object model)
+        {
+            if (string.IsNullOrEmpty(viewName))
+                viewName = ControllerContext.RouteData.GetRequiredString("action");
+
+            ViewData.Model = model;
+
+            using (StringWriter sw = new StringWriter())
+            {
+                ViewEngineResult viewResult = ViewEngines.Engines.FindPartialView(ControllerContext, viewName);
+                ViewContext viewContext = new ViewContext(ControllerContext, viewResult.View, ViewData, TempData, sw);
+                viewResult.View.Render(viewContext, sw);
+
+                return sw.GetStringBuilder().ToString();
+            }
+        }
     }
 }
