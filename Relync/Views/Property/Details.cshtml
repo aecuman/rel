@@ -256,19 +256,11 @@
         <!-- Your share button code -->
         <div class="fb-share-button"
              data-href=@Url.Encode(Request.Url.ToString())
-             data-layout="button">
-        </div>
-
-        <a href="https://www.facebook.com/sharer/sharer.php?
-     u=@Url.Encode(Request.Url.ToString())
-           target="_blank" title="Like">
-            <span class="fui-facebook"></span>
-
-        </a>
-        Facebook
-
+             data-layout="button_count">
+        </div>     
+        <a href="whatsapp://send?text=@Url.Encode(Request.Url.ToString())&nbsp;@Url.Encode(Model.pptyType)>" data-action="share/whatsapp/share"><span class="fui-skype"></span> Share via Whatsapp</a>
         <a href="https://twitter.com/intent/tweet?
-   url=@Url.Encode(Request.Url.ToString())&text=@Url.Encode(Model.GDescription)"
+   url=@Url.Encode(Request.Url.ToString())&text=@Url.Encode(Model.pptyType)"
            target="_blank" title="Tweet">
             <span class="fui-twitter"></span>
         </a>
