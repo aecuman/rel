@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MongoDB.Bson;
+using Relync.App_Start;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,6 +15,7 @@ namespace Relync
     {
         protected void Application_Start()
         {
+            ModelBinders.Binders.Add(typeof(ObjectId), new ObjectIdBinder());
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);

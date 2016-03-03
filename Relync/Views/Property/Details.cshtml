@@ -1,120 +1,132 @@
-﻿<script charset="UTF-8" type="text/javascript" src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0"></script>
-@model Relync.Models.PropertyList
-
-@{
-    ViewBag.Title = "Details";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-
-<script type="text/javascript" src="~/Scripts/owl.carousel.js"></script>
-<script type="text/javascript">
+﻿
+    <meta property="og:url" content="@Request.Url.ToString()" />
+    <meta property="og:type" content="@Model.pptyType" />
+    <meta property="og:title" content=@ViewBag.Title />
+    <meta property="og:description" content="@Model.GDescription" />
+    <meta property="og:image" content="@Model.planLink" />
 
 
-    function GetMap(){
-        // Initialize the map
-        map = new Microsoft.Maps.Map(document.getElementById("myMap"),
-        { credentials: "ArP9YXvDyZRDN2LPAKH7XtJAK-9bOgPVlu90FXatfLdRaH9246hGOQWnnH3qbF4m", showScalebar: false,enableSearchLogo:false,showMapTypeSelector:false,showDashboard:false,disablePanning: true });
-        // Define the pushpin location
-        var loc = new Microsoft.Maps.Location(@Model.lat, @Model.lon);
+    <script charset="UTF-8" type="text/javascript" src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0"></script>
+    @model Relync.Models.PropertyList
 
-        // Add a pin to the map
-        var pin = new Microsoft.Maps.Pushpin(loc);
-        map.entities.push(pin);
-        // Center the map on the location
-        map.setView({ center: loc, zoom: 16 });
+    @{
+        ViewBag.Title = "Details";
+        Layout = "~/Views/Shared/_Layout.cshtml";
     }
-    $().ready(function () {
-        $("form[action$='AddComment']").on("submit", function () {
-            $.post(
-               $(this).attr("action"),
-               $(this).serialize(),
-               function (response) {
-                   if (response.Result == "ok") {
-                       $(response.CommentHtml).hide().prependTo("#comment-list").fadeIn(1000);
-                       $("#add-comment").html(response.FormHtml);
-                       $("#Details").val("");
-                   }
-                   else {
-                       $("#add-comment").html(response.FormHtml);
-                   }
-               });
-            return false;
-        });
 
-        $("#load-more").on('click', function() {
-            $.post(
-                '@Url.Action("CommentList")',
-                { postId: '@Model.Id', skip : $(this).data("LoadedComments"), limit : 5, totalComments: @ViewBag.TotalComments },
-                function (response) {
-                    $("#comment-list").find("#load-more").parent().replaceWith($(response).fadeIn(1000));
-                });
-        });
-
-        $(".remove-comment").on('click', function() {
-            var commnt=$(this).parent();
-            $.post(
-            '@Url.Action("RemoveComment")',
-            {
-                Id:'@Model.Id', commentID: $(this).data("commentID")},
-                function(){
-                    commnt.fadeOut(1000,function(){$(this).remove();});
-                });
-
-        });
-
-    });
-</script>
-<body onfocus="GetMap();">
-    <h4 class="col-lg-offset-1">@Html.DisplayFor(model => model.pptyType) - @Html.DisplayFor(model => model.District) - @Html.DisplayFor(model => model.Suburb) - @Html.DisplayFor(model => model.Contact)</h4>
+    <script type="text/javascript" src="~/Scripts/owl.carousel.js"></script>
+    <script type="text/javascript">
 
 
+        function GetMap(){
+            // Initialize the map
+            map = new Microsoft.Maps.Map(document.getElementById("myMap"),
+            { credentials: "ArP9YXvDyZRDN2LPAKH7XtJAK-9bOgPVlu90FXatfLdRaH9246hGOQWnnH3qbF4m", showScalebar: false,enableSearchLogo:false,showMapTypeSelector:false,showDashboard:false,disablePanning: true });
+            // Define the pushpin location
+            var loc = new Microsoft.Maps.Location(@Model.lat, @Model.lon);
 
-    <div class="col-lg-12 owl-carousel owl-theme">
-        @foreach (var items in Model.ImageList)
-        {
-            <div class="item">
-                <img src="@items.ImagePath" alt="@items.Name" class="img-rounded" />
-            </div>
+            // Add a pin to the map
+            var pin = new Microsoft.Maps.Pushpin(loc);
+            map.entities.push(pin);
+            // Center the map on the location
+            map.setView({ center: loc, zoom: 16 });
         }
-        <div class="item active" >
-           
-        </div>
-        <div class="item">
-            <img src="@Model.planLink" class="img-rounded"/>
-        </div>
-    </div>
-    <div id='myMap' style="position:relative; height:400px; width:500px"></div>   
-  
-    <div class="row" data-spy="affix" style="background-color:#D2D0C8; z-index:15; width:100%;" data-offset-top="600">
-        <div class="col-lg-8">
-            <div class="col-lg-offset-2 left" >
-                <dl>
-                    <dt>
-                        @Html.DisplayFor(model => model.Suburb)
-                    </dt>
-                    <dd>
-                       
-                        <b>@Html.DisplayFor(model => model.Place)</b>
-                        <br>@Html.DisplayFor(model => model.Bedrooms)&nbsp;Bedrooms&nbsp;|&nbsp;
-                        <span></span>@Html.DisplayFor(model => model.Baths)&nbsp;Baths
-                    </dd>
-                        </dl>
-             
+        $().ready(function () {
+            $("form[action$='AddComment']").on("submit", function () {
+                $.post(
+                   $(this).attr("action"),
+                   $(this).serialize(),
+                   function (response) {
+                       if (response.Result == "ok") {
+                           $(response.CommentHtml).hide().prependTo("#comment-list").fadeIn(1000);
+                           $("#add-comment").html(response.FormHtml);
+                           $("#Name").val("");
+                           $("#Cmmnt").val("");
+                       }
+                       else {
+                           $("#add-comment").html(response.FormHtml);
+                       }
+                   });
+                return false;
+            });
+
+            $("#load-more").on('click', function() {
+                $.post(
+                    '@Url.Action("CommentList")',
+                    { postId: '@Model.Id', skip : $(this).data("loadedComments"), limit : 5, totalComments: @ViewBag.TotalComments },
+                    function (response) {
+                        $("#comment-list").find("#load-more").parent().replaceWith($(response).fadeIn(1000));
+                    });
+            });
+
+            $(".remove-comment").on('click', function() {
+                var commnt=$(this).parent();
+                $.post(
+
+                 '@Url.Action("RemoveComment")',
+                 {
+                     Id:'@Model.Id', commentID: $(this).data('id')},
+                     function(){
+
+                         commnt.fadeOut(1000,function(){$(this).remove();});
+
+                     });
+
+            });
+
+        });
+    </script>
+    <body onfocus="GetMap();">
+        <h4 class="col-lg-offset-1">@Html.DisplayFor(model => model.pptyType) - @Html.DisplayFor(model => model.District) - @Html.DisplayFor(model => model.Suburb) - @Html.DisplayFor(model => model.Contact)</h4>
+
+
+
+        <div class="col-lg-12 owl-carousel owl-theme">
+            @foreach (var items in Model.ImageList)
+            {
+                <div class="item">
+                    <img src="@items.ImagePath" alt="@items.Name" class="img-rounded" />
+                </div>
+            }
+            <div class="item active">
+
             </div>
-            <div class="col-lg-2 text-right right" style="border-left: solid #F1C40F 1px;";>
-                <dl>
-                    <br />
-                    <dt> @Html.DisplayFor(model => model.Price)</dt>
-                    <dd>
-                        <small>per month</small>
-                    </dd>
-                </dl>
+            <div class="item">
+                <img src="@Model.planLink" class="img-rounded" />
             </div>
-            
         </div>
+        <div id='myMap' style="position:relative; height:400px; width:500px"></div>
+
+        <div class="row" data-spy="affix" style="background-color:#D2D0C8; z-index:15; width:100%;" data-offset-top="600">
+            <div class="col-lg-8">
+                <div class="col-lg-offset-2 left">
+                    <dl>
+                        <dt>
+                            @Html.DisplayFor(model => model.Suburb)
+                        </dt>
+                        <dd>
+
+                            <b>@Html.DisplayFor(model => model.Place)</b>
+                            <br>@Html.DisplayFor(model => model.Bedrooms)&nbsp;Bedrooms&nbsp;|&nbsp;
+                            <span></span>@Html.DisplayFor(model => model.Baths)&nbsp;Baths
+                        </dd>
+                    </dl>
+
+                </div>
+                <div class="col-lg-2 text-right right" style="border-left: solid #F1C40F 1px;" ;>
+                    <dl>
+                        <br />
+                        <dt> @Html.DisplayFor(model => model.Price)</dt>
+                        <dd>
+                            <small>per month</small>
+                        </dd>
+                    </dl>
+                </div>
+
+            </div>
         </div>
-    <div class="row" style="background-color:#fff">
-       
+        <div class="row" style="background-color:#fff">
+
             <dl class="dl-horizontal col-lg-8">
                 <dd>
                     <b> @Html.DisplayName("General Description")</b>
@@ -194,7 +206,7 @@
 
 
 
-               
+
                 <dt>
                     @Html.DisplayNameFor(model => model.Email)
                 </dt>
@@ -213,36 +225,74 @@
             </dl>
             <div class="col-lg-4 right" data-spy="affix" data-offset-top="1000">
 
-            <dl>
-                <dt class="text-center ">
-                    @Html.DisplayName("Please Call")&nbsp;@Html.DisplayFor(model => model.ListedBy)
-                </dt>
+                <dl>
+                    <dt class="text-center ">
+                        @Html.DisplayName("Please Call")&nbsp;@Html.DisplayFor(model => model.ListedBy)
+                    </dt>
 
-                <dd>
-                    @Html.DisplayFor(model => model.Phone)
-                </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.Phone)
+                    </dd>
 
-            </dl>
-        </div>
+                </dl>
+            </div>
             <div>
 
             </div>
 
         </div>
-    <h3>Comments</h3>
-  
-    <div id="add-comment">
-        @Html.Partial("AddComment", new Relync.Models.Comment())
-    </div>
-    <div id="comment-list">
-        @if (Model.Commnt != null)
-        {
-            Html.RenderPartial("CommentList", Model.Commnt);
-        }
-    </div>
-    <p>
-      <!--  @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |-->
-        @Html.ActionLink("Back to List", "Map")
-    </p>
-</body>
-@Scripts.Render("~/bundles/jquery")
+        <!-- Load Facebook SDK for JavaScript -->
+       
+        <div id="fb-root"></div>
+        <script>
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+        <!-- Your share button code -->
+        <div class="fb-share-button"
+             data-href=@Url.Encode(Request.Url.ToString())
+             data-layout="button">
+        </div>
+
+        <a href="https://www.facebook.com/sharer/sharer.php?
+     u=@Url.Encode(Request.Url.ToString())
+           target="_blank" title="Like">
+            <span class="fui-facebook"></span>
+
+        </a>
+        Facebook
+
+        <a href="https://twitter.com/intent/tweet?
+   url=@Url.Encode(Request.Url.ToString())&text=@Url.Encode(Model.GDescription)"
+           target="_blank" title="Tweet">
+            <span class="fui-twitter"></span>
+        </a>
+
+        Twitter
+        <a href="https://plus.google.com/share?
+   url=@Url.Encode(Request.Url.ToString())"
+           target="_blank" title="Share on Google+">
+            <span class="fui-google-plus"></span>
+
+        </a>
+        Google+
+        <div id="add-comment">
+            @Html.Partial("AddComment", new Relync.Models.Comment())
+        </div>
+        <div id="comment-list">
+            @if (Model.Commnt != null)
+            {
+                Html.RenderPartial("CommentList", Model.Commnt);
+            }
+        </div>
+        <p>
+            <!--  @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |-->
+            @Html.ActionLink("Back to List", "Map")
+        </p>
+    </body>
+    @Scripts.Render("~/bundles/jquery")

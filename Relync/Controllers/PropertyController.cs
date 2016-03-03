@@ -256,9 +256,9 @@ namespace Relync.Controllers
             {
                 var newComment = new Comment() {
                     commentID = cmt.commentID,
-                    Name=cmt.Name,
-                    Cmmnt=cmt.Cmmnt,
-                    Date=cmt.Date
+                    Name = cmt.Name,
+                    Cmmnt = cmt.Cmmnt,
+                    Date = cmt.Date
 
                 };
                 _property.AddCmmnt(Id, cmt);
@@ -273,13 +273,21 @@ namespace Relync.Controllers
                     });
             }
             ViewBag.PostId = Id;
-            return View(_property.GetProperty(Id));
+            return Json(
+               new
+               {
+                   Result = "fail",
+                   FormHtml = RenderPartialViewToString("AddComment", cmt)
+               });
 
         }
-        public ActionResult RemoveComment(string Id, ObjectId commentID)
+        
+        public ActionResult RemoveComment(string Id,ObjectId commentID)
         {
+            
             _property.RemoveComment(Id, commentID);
             return new EmptyResult();
+
         }
         [HttpPost]
         public ActionResult CommentList(string Id,int skip,int limit,int totalComments)
