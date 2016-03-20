@@ -25,14 +25,14 @@ namespace Relync.Models
             if (string.IsNullOrWhiteSpace(connection))
             {
 
-              //connection = "mongodb://localhost:27017/propertydb";
-                 connection = "mongodb://appharbor_xlnbpk5k:q4uttrsjb3oelhqtcgh6e7v9vg@ds039155.mongolab.com:39155/appharbor_xlnbpk5k";
+                // connection = "mongodb://localhost:27017/propertydb";
+                connection = "mongodb://admin:relync101@ds019839.mlab.com:19839/propertydb";
             }
             MongoClient mongoClient = new MongoClient(connection);
            //  _server = mongoClient.GetDatabase("propertydb");
             // MongoDatabase db = mongoClient.GetDatabase("propertydb"); 
-          // _database = mongoClient.GetServer().GetDatabase("propertydb");
-           _database = mongoClient.GetServer().GetDatabase("appharbor_xlnbpk5k");
+        _database = mongoClient.GetServer().GetDatabase("propertydb");
+         // _database = mongoClient.GetServer().GetDatabase("appharbor_xlnbpk5k");
             _property = _database.GetCollection<PropertyList>("propertylist");
             // IndexKeysBuilder Key = IndexKeys.GeoSpatial("list");
             //  IndexOptionsBuilder options = IndexOptions.SetUnique(true).SetDropDups(true);
@@ -48,8 +48,8 @@ namespace Relync.Models
             item.Id = BsonObjectId.GenerateNewId().ToString();
             item.Contact = (_property.Count() + 1).ToString();
             item.Date = DateTime.Now;
-           // Uploadvid(item.Contact, vid);
-            _property.Insert(item);
+            // Uploadvid(item.Contact, vid);
+            _property.Save(item);
             return item;
         }
 

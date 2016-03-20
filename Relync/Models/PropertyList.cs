@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace Relync.Models
 {
+   
     public class PropertyList
     {
         
@@ -23,52 +24,46 @@ namespace Relync.Models
         [BsonRequired]
         public string pptyType { get; set; }
         public string Category { get; set; }
-        [BsonElement("district")]
+   
         public string District { get; set; }
-        [BsonElement("suburb")]
+     
         public string Suburb { get; set; }
-        [BsonElement("place")]
+
         public string Place { get; set; }
-        [BsonElement("bedrooms")]
+
         public double Bedrooms { get; set; }
-        [BsonElement("baths")]
+
         public double Baths { get; set; }
         public string Price { get; set; }
-        [BsonElement("area")]
-        public string Area { get; set; }
+
+
       
         public double lat { get; set; }
         public double lon { get; set; }   
-        [BsonElement("availability")]
+
         public bool Availability { get; set; }
-        [BsonElement("generaldescription")]
+        [UIHint("WYSIWYG")]
         [AllowHtml]
         public string GDescription { get; set; }
-        [BsonElement("facts")]
-        public string Facts { get; set; }
-        [BsonElement("rooms")]
-        public string Rooms { get; set; }
-        [BsonElement("construction")]
-        public string Construction { get; set; }
-        [BsonElement("other")]
-        public string Other { get; set; }
-        [BsonElement("PriceHistory")]
-        public IList<HistoryModel> PriceHistory { get; set; }
-        [BsonElement("nearby")]
-        public string Nearby { get; set; }
 
-        [BsonElement("listedby")]
+        [UIHint("WYSIWYG")]
+        [AllowHtml]
+        public string Detail { get; set; }
+        public IList<HistoryModel> PriceHistory { get; set; }
+      
+
+     
         public string ListedBy { get; set; }
         [DataType(DataType.DateTime)]
         
         public DateTime Date { get; set; }
-        [BsonElement("contactname")]
+
         public string ContactName { get; set; }
-        [BsonElement("typcontact")]
+
         public string TypContact { get; set; }
-        [BsonElement("phone")]
+
         public string Phone { get; set; }
-        [BsonElement("email")]
+
         public string Email { get; set; }
         public string Contact { get; set; }
         public List<ImageGallery>ImageList { get; set; }
@@ -86,13 +81,13 @@ namespace Relync.Models
     {
         [BsonId]
         public string id { get; set; }
-        [BsonElement("hdate")]
+
         public DateTime HDate { get; set; }
-        [BsonElement("pricehistory")]
+    
         public int PriceHistory { get; set; }
-        [BsonElement("event")]
+
         public string Event { get; set; }
-        [BsonElement("source")]
+
         public string Source { get; set; }
 
 

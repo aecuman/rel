@@ -49,16 +49,16 @@
       <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="AWSSDK, Version=2.3.54.2, Culture=neutral, PublicKeyToken=9f476d3089b52be3, processorArchitecture=MSIL">
-      <HintPath>..\packages\AWSSDK.2.3.54.2\lib\net45\AWSSDK.dll</HintPath>
+    <Reference Include="AWSSDK.Core, Version=3.2.0.0, Culture=neutral, PublicKeyToken=885c28607f98e604, processorArchitecture=MSIL">
+      <HintPath>..\packages\AWSSDK.Core.3.2.3.0-beta\lib\net45\AWSSDK.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="AWSSDK.Core, Version=3.1.0.0, Culture=neutral, PublicKeyToken=885c28607f98e604, processorArchitecture=MSIL">
-      <HintPath>..\packages\AWSSDK.Core.3.1.4.3\lib\net45\AWSSDK.Core.dll</HintPath>
+    <Reference Include="AWSSDK.ElasticBeanstalk, Version=3.2.0.0, Culture=neutral, PublicKeyToken=885c28607f98e604, processorArchitecture=MSIL">
+      <HintPath>..\packages\AWSSDK.ElasticBeanstalk.3.2.3.0-beta\lib\net45\AWSSDK.ElasticBeanstalk.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="AWSSDK.S3, Version=3.1.0.0, Culture=neutral, PublicKeyToken=885c28607f98e604, processorArchitecture=MSIL">
-      <HintPath>..\packages\AWSSDK.S3.3.1.3.10\lib\net45\AWSSDK.S3.dll</HintPath>
+    <Reference Include="AWSSDK.S3, Version=3.2.0.0, Culture=neutral, PublicKeyToken=885c28607f98e604, processorArchitecture=MSIL">
+      <HintPath>..\packages\AWSSDK.S3.3.2.0.0-beta\lib\net45\AWSSDK.S3.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="BouncyCastle.Crypto, Version=1.7.4137.9688, Culture=neutral, PublicKeyToken=a4292a325f69b123, processorArchitecture=MSIL">
@@ -283,6 +283,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootstrap3-wysihtml5.min.css" />
     <Content Include="Content\editor.css" />
     <Content Include="Content\flat-ui.css" />
     <Content Include="Content\flat-ui.min.css" />
@@ -342,15 +343,18 @@
     <Content Include="fonts\glyphicons\flat-ui-icons-regular.ttf" />
     <Content Include="fonts\glyphicons\flat-ui-icons-regular.woff" />
     <Content Include="fonts\glyphicons\selection.json" />
-    <Content Include="packages.config" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="appspec.yml" />
     <None Include="Properties\PublishProfiles\test.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\bootstrap3-wysihtml5.all.min.js" />
+    <Content Include="Scripts\bootstrap3-wysihtml5.min.css" />
     <Content Include="Scripts\editor.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -401,7 +405,7 @@
     <Content Include="Views\History\Index.cshtml" />
     <Content Include="Views\Property\Create.cshtml" />
     <Content Include="Views\Property\Details.cshtml" />
-    <Content Include="Views\Property\Landing.cshtml" />
+    <Content Include="Views\Property\Index.cshtml" />
     <Content Include="Views\Property\Delete.cshtml" />
     <Content Include="Views\Property\List.cshtml" />
     <Content Include="Views\Property\AvailEdit.cshtml" />
@@ -422,7 +426,7 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <Analyzer Include="..\packages\AWSSDK.S3.3.1.3.10\analyzers\dotnet\cs\AWSSDK.S3.CodeAnalysis.dll" />
+    <Analyzer Include="..\packages\AWSSDK.ElasticBeanstalk.3.2.3.0-beta\analyzers\dotnet\cs\AWSSDK.ElasticBeanstalk.CodeAnalysis.dll" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
