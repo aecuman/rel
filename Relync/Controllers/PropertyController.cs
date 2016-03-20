@@ -16,7 +16,7 @@ namespace Relync.Controllers
         public static readonly IPropertyList _property = new PropertyListRepository();
 
 
-        public ActionResult Landing(string Typ, string locn, string px)
+        public ActionResult Index(string Typ, string locn, string px)
         {
             if (!string.IsNullOrEmpty(Typ) && !string.IsNullOrEmpty(locn) || !string.IsNullOrEmpty(px))
             {

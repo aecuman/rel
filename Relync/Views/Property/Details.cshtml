@@ -107,30 +107,30 @@
 
         <div class="row" data-spy="affix" style="background-color:#D2D0C8; z-index:15; width:100%;" data-offset-top="600">
             <div class="col-lg-8">
-                <div class="col-lg-offset-2 left">
-                    <dl>
-                        <dt>
-                            @Html.DisplayFor(model => model.Suburb)
-                        </dt>
-                        <dd>
+                <p>
+                    <div class="col-lg-8 ">
 
-                            <b>@Html.DisplayFor(model => model.Place)</b>
-                            <br>@Html.DisplayFor(model => model.Bedrooms)&nbsp;Bedrooms&nbsp;|&nbsp;
-                            <span></span>@Html.DisplayFor(model => model.Baths)&nbsp;Baths
-                        </dd>
-                    </dl>
 
-                </div>
-                <div class="col-lg-2 text-right right" style="border-left: solid #F1C40F 1px;" ;>
-                    <dl>
-                        <br />
-                        <dt> @Html.DisplayFor(model => model.Price)</dt>
-                        <dd>
-                            <small>per month</small>
-                        </dd>
-                    </dl>
-                </div>
+                        @Html.DisplayFor(model => model.Suburb)
 
+
+                        @Html.DisplayFor(model => model.Place)
+                        @Html.DisplayFor(model => model.Bedrooms)&nbsp;Bedrooms&nbsp;|&nbsp;
+                        <span></span>@Html.DisplayFor(model => model.Baths)&nbsp;Baths
+
+
+
+                    </div>
+                    <div class="col-lg-4" style="border-left: solid #F1C40F 1px;" ;>
+
+
+                        @Html.DisplayFor(model => model.Price)
+
+                        <small>per month</small>
+
+
+                    </div>
+                </p>
             </div>
         </div>
         <div class="row" style="background-color:#fff">
@@ -143,7 +143,13 @@
                 <dd>
                     @Html.DisplayFor(model => model.GDescription)
                 </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Detail)
+                </dt>
 
+                <dd>
+                    @Html.Raw(Model.Detail)
+                </dd>
                 <dt>
                     @Html.DisplayNameFor(model => model.Price)
                 </dt>
@@ -154,55 +160,7 @@
 
 
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.Facts)
-                </dt>
 
-                <dd>
-                    @Html.DisplayFor(model => model.Facts)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.Rooms)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Rooms)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.Construction)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Construction)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.Other)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Other)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.Nearby)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Nearby)
-                </dd>
-
-
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.Date)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Date)
-                </dd>
 
                 <dt>
                     @Html.DisplayNameFor(model => model.ContactName)
@@ -231,7 +189,7 @@
 
 
             </dl>
-            <div class="col-lg-4 right" data-spy="affix" data-offset-top="1000">
+            <div class="col-lg-4">
 
                 <dl>
                     <dt class="text-center ">
@@ -241,7 +199,40 @@
                     <dt>
                         @Html.DisplayFor(model => model.Phone)
                     </dt>
-                 
+                    <dd>
+                        <!-- Load Facebook SDK for JavaScript -->
+
+                        <div id="fb-root"></div>
+                        <script>
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+                        <!-- Your share button code -->
+                        <div class="fb-share-button"
+                             data-href=@Url.Encode(Request.Url.ToString())
+                             data-layout="button_count">
+                        </div>
+                        <a href="whatsapp://send?text=@Url.Encode(Request.Url.ToString())&nbsp;@Url.Encode(Model.pptyType)>" data-action="share/whatsapp/share"><span class="fui-skype"></span> Share via Whatsapp</a>
+                        <a href="https://twitter.com/intent/tweet?
+   url=https://relync.ug/Property/Details/@Model.Id&text=@Url.Encode(Model.pptyType)"
+                           target="_blank" title="Tweet">
+                            <span class="fui-twitter"></span>
+                        </a>
+
+                        Twitter
+                        <a href="https://plus.google.com/share?
+   url=@Url.Encode(Request.Url.ToString())"
+                           target="_blank" title="Share on Google+">
+                            <span class="fui-google-plus"></span>
+
+                        </a>
+                        Google+
+                    </dd>
                 </dl>
             </div>
             <div>

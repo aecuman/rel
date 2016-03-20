@@ -1,8 +1,15 @@
 ﻿@model Relync.Models.PropertyList
-<script src="~/Scripts/editor.js"></script>
+
+
+
+
+
+
+
 <script charset="UTF-8" type="text/javascript" src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0">
 </script>
-<link href="~/Content/editor.css" type="text/css" rel="stylesheet">
+<link href="~/Content/bootstrap-theme.min.css" type="text/css" rel="stylesheet">
+<link href="~/Content/bootstrap3-wysihtml5.min.css" type="text/css" rel="stylesheet">
 
 <script type="text/javascript">
 var map = null;
@@ -17,7 +24,8 @@ function GetMap()
     var pin = new Microsoft.Maps.Pushpin(center, { width: 50, height: 50, draggable: true });
     Microsoft.Maps.Events.addHandler(pin, 'click', displayLatLong);
     map.entities.push(pin);
-
+    $("#Detail").Editor();
+    $('#GDescription').Editor();
     
 }
 function displayLatLong(e) {
@@ -99,6 +107,7 @@ function displayLatLong(e) {
                     @Html.ValidationMessageFor(model => model.Place, "", new { @class = "text-danger" })
                 </div>
             </div>
+            <div id="txtEditor"></div>
 
             <div class="form-group">
                 @Html.LabelFor(model => model.Bedrooms, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -124,13 +133,7 @@ function displayLatLong(e) {
                 </div>
             </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.Area, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Area, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Area, "", new { @class = "text-danger" })
-                </div>
-            </div>
+            
             <div class="form-group">
                 @Html.Label("Drag Pin to Location", htmlAttributes: new { @class = "control-label  col-md-2" })
                 <div class="col-md-10">
@@ -172,49 +175,21 @@ function displayLatLong(e) {
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.Facts, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.LabelFor(model => model.Detail, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        <textarea placeholder="Comment *" class="form-control" rows="10" id="Facts" name="Facts"></textarea>
+                        <textarea placeholder="Write the building full details here" style="width: 100%; height: 400px; font-size: 14px; line-height: 18px;" id="Detail" name="Detail"></textarea>
                   
-                        @Html.ValidationMessageFor(model => model.Facts, "", new { @class = "text-danger" })
+                        @Html.ValidationMessageFor(model => model.Detail, "", new { @class = "text-danger" })
                     </div>
                 </div>
             
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Rooms, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        <textarea placeholder="Comment *" class="form-control" rows="10" id="Rooms" name="Rooms"></textarea>
-                      
-                        @Html.ValidationMessageFor(model => model.Rooms, "", new { @class = "text-danger" })
-                    </div>
-                </div>
+              
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Construction, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        <textarea placeholder="Comment *" class="form-control" rows="10" id="Construction" name="Construction"></textarea>
-                        
-                        @Html.ValidationMessageFor(model => model.Construction, "", new { @class = "text-danger" })
-                    </div>
-                </div>
+                
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Other, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        <textarea placeholder="Comment *" class="form-control" rows="10" id="Other" name="Other"></textarea>
-                       
-                        @Html.ValidationMessageFor(model => model.Other, "", new { @class = "text-danger" })
-                    </div>
-                </div>
+               
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Nearby, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Nearby, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Nearby, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
+                
                 <div class="form-group">
                     @Html.LabelFor(model => model.ListedBy, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
@@ -331,4 +306,11 @@ function displayLatLong(e) {
             }   
         });
     </script>
+    <script src="~/Scripts/bootstrap3-wysihtml5.all.min.js" type="text/javascript"></script>
+    <script>
+        $("#Detail").wysihtml5();
+        $('#Detail').data("wysihtml5").editor.setValue('');
+    </script>
+ 
+
 </body>
