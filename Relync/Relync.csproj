@@ -303,7 +303,9 @@
     <Content Include="Content\Site.css" />
     <Content Include="Images\Abtpic.jpg" />
     <Content Include="Images\bn.jpg" />
+    <Content Include="Images\GalleryImages\c5d5e9d3-02dd-4986-aac9-9663c830700c.jpg" />
     <Content Include="Images\GalleryImages\Plans\1.jpg.jpg" />
+    <Content Include="Images\GalleryImages\thumbs\c5d5e9d3-02dd-4986-aac9-9663c830700c.jpg" />
     <Content Include="Images\Icons\clipboard.svg" />
     <Content Include="Images\Icons\map.svg" />
     <Content Include="Images\Icons\vid.svg" />
@@ -409,7 +411,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Images\GalleryImages\thumbs\" />
     <Folder Include="Views\Contact\" />
   </ItemGroup>
   <ItemGroup>
