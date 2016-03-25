@@ -11,16 +11,20 @@
 
 <div class="jumbotron landing">
     <div  style="padding:40px;">
-        <p class="text-center"><h4 class="text-center reduce">Navigate Map to View Properties</h4></p>
-        <div class="tab-content text-center">
+        <p class="text-center"><h4 class="text-center reduce">A Location First Real Estate Website</h4></p>
+        <div style="text-align:center;">
+            <p> Select Category to view location map of properties</p>
+
+        </div>
+          <div class="tab-content text-center" style="padding: 15px;">
 
             <div id="tabr1" class="tab">
                 @using (Html.BeginForm("Landing", "Property", FormMethod.Post, new { @encType = "multipart/form-data" }))
                 {
-                   
-                    <a href="~/Property/Map" class="icn btn btn-wide animated zoomInDown animated infinite bounce"><span class="fui fui-location"></span></a>
-                   
-
+    <a href="~/Property/Map?pptyType=RENT" class="btn btn-wide input-landing"style="background-color: rgba(0, 0, 0, 0.59);border: solid 1px orange;"><i class="glyphicon glyphicon-map-marker"></i>Rent</a>
+                  @*  <a href="~/Property/Map" class="icn btn btn-wide animated zoomInDown animated infinite bounce"><span class="fui fui-location"></span></a>
+                *@
+<a href="#" class="btn btn-wide input-landing" style="background-color: rgba(0, 0, 0, 0.59);border: solid 1px orange;"><i class="glyphicon glyphicon-map-marker"></i>Sale</a>
 
                 }
             </div>
@@ -36,12 +40,20 @@
 
 
 <div class="row" >
+    <div class="col-md-4">
+        <div class="tile animated slideInLeft">
+            <img src="~/Images/Icons/map.svg" alt="Map" class="tile-image big-illustration">
+            <h3 class="tile-title">Site Map</h3>
+            <p>Location map of Property Listings</p>
+
+        </div>
+    </div>
     <div id="tile" class="col-md-4">
         <div  class="tile animated slideInRight">
             <img src="~/Images/Icons/clipboard.svg" alt="Clipboard" class="tile-image big-illustration">
             <h3 class="tile-title">Professional Inspection</h3>
             <p>
-                Inspected by trained Realtors
+                Trained Realtors create detailed property description
             </p>
             
         </div>
@@ -50,23 +62,16 @@
         <div class="tile animated slideInUp">            
             <img src="~/Images/Icons/vid.svg" alt="Vid" class="tile-image big-illustration">
             <h3 class="tile-title">Video Tour</h3>
-             <p>Watc a tour of the property.</p>
+             <p>Video walkthrough of rental property</p>
             
         </div>
     </div>
-    <div class="col-md-4">
-        <div class="tile animated slideInLeft">
-            <img src="~/Images/Icons/map.svg" alt="Map" class="tile-image big-illustration">
-            <h3 class="tile-title">Site Map</h3>
-            <p>View location maps and floor plans.</p>
-            
-        </div>
-    </div>
+  
 
    
 </div>
-<div class="tagsinput-primary palette palette-asbestos" style="font-weight:bolder;text-align:center;padding:24px;">
-    <p> DREAM IT, FIND IT, OWN IT</p>
+<div class="row" style="border-top:1px solid #4D4D4D; font-weight:bolder;text-align:center;max-height:110px;">
+    <p class="lead">DREAM IT,&nbsp; FIND IT,&nbsp; OWN IT</p>
 
 </div>
 <div class="tagsinput-primary bgland lead">

@@ -28,6 +28,25 @@
             </div>
 
             <div class="navbar-collapse collapse">
+                @using (Html.BeginForm("Map", "Property", FormMethod.Post, new { @encType = "multipart/form-data" }))
+                {
+                    <p>
+
+                        @Html.DropDownList("typ", new List<SelectListItem>
+    {
+    new SelectListItem(){Text="Select Type...",Value=""},
+    new SelectListItem(){Text="Rent",Value="RENT"},
+    new SelectListItem(){Text="Sale",Value="SALE"},
+
+    }, new { @class = "input-landing", @style = "width:230px" })
+
+
+
+                        <button type="submit" class="btn btn-default input-landing"><i class="glyphicon glyphicon-search"></i></button>
+
+                    </p>
+                }
+                
                 <!--
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>

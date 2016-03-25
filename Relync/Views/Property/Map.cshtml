@@ -69,29 +69,13 @@ Json.Encode(
 
         <body onload="GetMap();">
          
-               
+          
             <div class="row" data-offset-top="197">
-                @using (Html.BeginForm("Map", "Property", FormMethod.Post, new { @encType = "multipart/form-data" }))
-                {
-                    <p>
-                        @Html.DropDownList("typ", new List<SelectListItem>
-    {
-    new SelectListItem(){Text="Select Type...",Value=""},
-    new SelectListItem(){Text="Rent",Value="RENT"},
-    new SelectListItem(){Text="Sale",Value="SALE"},
-
-    }, new { @class = "input-landing", @style = "width:230px" })
-
-
-
-                        <button type="submit" class="btn btn-default input-landing"><i class="glyphicon glyphicon-search"></i></button>
-
-                    </p>
-                }
-
+                <small> <h5 class="animated infinite flash text-center" style="z-index: 2;position: relative;">tap pin to preview</h5></small>
+              
                 </div>
 
-
+            
                 <div id='mapDiv' class="jumbotron" style="position:relative; height:500px"></div>
 
 

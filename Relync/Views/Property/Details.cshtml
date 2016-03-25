@@ -29,7 +29,7 @@
             var pin = new Microsoft.Maps.Pushpin(loc);
             map.entities.push(pin);
             // Center the map on the location
-            map.setView({ center: loc, zoom: 16 });
+            map.setView({ center: loc, zoom: 17,disableZooming:true });
         }
         $().ready(function () {
             $("form[action$='AddComment']").on("submit", function () {
@@ -90,25 +90,23 @@
                 @foreach (var items in Model.ImageList)
             {
                     <div class="item">
-                        <img src="@items.ImagePath" alt="@items.Name" class="img-rounded" />
+                        <img src="@items.ImagePath" alt="@items.Name" class="img-rounded" height="400" />
                     </div>
                 }
                 <div class="item active">
                     <div id='myMap' style="position:relative; height:400px;"></div>
                 </div>
-                <div class="item">
-                    <img src="@Model.planLink" class="img-rounded" />
-                </div>
+               
             </div>
             <a class="carousel-control left" href="#myCarousel" data-slide="prev"><span class="icon-prev"></span></a>
             <a class="carousel-control right" href="#myCarousel" data-slide="next"><span class="icon-next"></span></a> 
             </div>
         
 
-        <div class="row" data-spy="affix" style="background-color:#D2D0C8; z-index:15; width:100%;" data-offset-top="600">
-            <div class="col-lg-8">
-                <p>
-                    <div class="col-lg-8 ">
+        <div class="row" data-spy="affix" style="background-color:#D2D0C8; z-index:15; width:100%;" data-offset-top="750">
+            <div class="col-lg-8 inline-form-control">
+                
+                    <div class="col-lg-offset-2 ">
 
 
                         @Html.DisplayFor(model => model.Suburb)
@@ -117,23 +115,21 @@
                         @Html.DisplayFor(model => model.Place)
                         @Html.DisplayFor(model => model.Bedrooms)&nbsp;Bedrooms&nbsp;|&nbsp;
                         <span></span>@Html.DisplayFor(model => model.Baths)&nbsp;Baths
+                     
 
+              
+
+
+                      &nbsp; Price:@String.Format("{0:C}", @Model.Price)<small>per month</small>
+
+                      
 
 
                     </div>
-                    <div class="col-lg-4" style="border-left: solid #F1C40F 1px;" ;>
-
-
-                        @Html.DisplayFor(model => model.Price)
-
-                        <small>per month</small>
-
-
-                    </div>
-                </p>
+                
             </div>
         </div>
-        <div class="row" style="background-color:#fff">
+        <dd class="row" style="background-color:#fff">
 
             <dl class="dl-horizontal col-lg-8">
                 <dd>
@@ -149,6 +145,13 @@
 
                 <dd>
                     @Html.Raw(Model.Detail)
+                </dd>
+                <dt>
+                    <b> @Html.DisplayName("Floor Plan")</b>
+
+                </dt>
+                <dd>
+                    <img src="@Model.planLink" class="img-rounded text-center" style="width:100%" />
                 </dd>
                 <dt>
                     @Html.DisplayNameFor(model => model.Price)
@@ -191,8 +194,8 @@
             </dl>
             <div class="col-lg-4">
 
-                <dl>
-                    <dt class="text-center ">
+                <dl class="text-center">
+                    <dt>
                         @Html.DisplayName("Please Call")&nbsp;@Html.DisplayFor(model => model.ListedBy)
                     </dt>
 
@@ -201,37 +204,38 @@
                     </dt>
                     <dd>
                         <!-- Load Facebook SDK for JavaScript -->
+@*
+                         <div id="fb-root"></div>
+                         <script>
+                             FB.ui({
+                                 method: 'share_open_graph',
+                                 action_type: 'og.likes',
+                                 action_properties: JSON.stringify({
+                                     object:'https://developers.facebook.com/docs/',
+                                 })
+                             }, function(response){}); </script>
 
-                        <div id="fb-root"></div>
-                        <script>
-(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
+                         <!-- Your share button code -->
+                         <div class="fb-share-button"
+                              data-href="@Url.Encode(Request.Url.ToString())"
+                              data-layout="button_count">
+                         </div>
+                         <a href="whatsapp://send?text=@Url.Encode(Request.Url.ToString())&nbsp;@Url.Encode(Model.pptyType)>" data-action="share/whatsapp/share"><span class="fui-skype"></span> Share via Whatsapp</a>
+                         <a href="https://twitter.com/intent/tweet?
+    url=https://relync.ug/Property/Details/@Model.Id&text=@Url.Encode(Model.pptyType)"
+                            target="_blank" title="Tweet">
+                             <span class="fui-twitter"></span>
+                         </a>
 
-                        <!-- Your share button code -->
-                        <div class="fb-share-button"
-                             data-href=@Url.Encode(Request.Url.ToString())
-                             data-layout="button_count">
-                        </div>
-                        <a href="whatsapp://send?text=@Url.Encode(Request.Url.ToString())&nbsp;@Url.Encode(Model.pptyType)>" data-action="share/whatsapp/share"><span class="fui-skype"></span> Share via Whatsapp</a>
-                        <a href="https://twitter.com/intent/tweet?
-   url=https://relync.ug/Property/Details/@Model.Id&text=@Url.Encode(Model.pptyType)"
-                           target="_blank" title="Tweet">
-                            <span class="fui-twitter"></span>
-                        </a>
+                         Twitter
+                         <a href="https://plus.google.com/share?
+    url=@Url.Encode(Request.Url.ToString())"
+                            target="_blank" title="Share on Google+">
+                             <span class="fui-google-plus"></span>
 
-                        Twitter
-                        <a href="https://plus.google.com/share?
-   url=@Url.Encode(Request.Url.ToString())"
-                           target="_blank" title="Share on Google+">
-                            <span class="fui-google-plus"></span>
-
-                        </a>
-                        Google+
+                         </a>
+                         Google+
+*@
                     </dd>
                 </dl>
             </div>
@@ -240,10 +244,11 @@
             </div>
 
         </div>
- 
-        <div id="add-comment">
-            @Html.Partial("AddComment", new Relync.Models.Comment())
-        </div>
+ @*
+    <div id="add-comment">
+        @Html.Partial("AddComment", new Relync.Models.Comment())
+    </div>
+*@
         <div id="comment-list">
             @if (Model.Commnt != null)
             {

@@ -4133,11 +4133,11 @@ fieldset[disabled] .input-group-btn .btn-default.active {
   }
 .navbar-toggle:before {
   font-family: "Flat-UI-Icons";
-  font-size: 22px;
+  font-size: 20px;
   font-style: normal;
   font-weight: normal;
   color: #16a085;
-  content: "\e61a";
+  content: "\e630";
   -webkit-transition: color .25s linear;
           transition: color .25s linear;
 

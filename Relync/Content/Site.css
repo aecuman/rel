@@ -36,10 +36,11 @@ textarea {
     float:left;
 }
 .bgland{
-    background-image:url(/Images/bn.jpg);
+    border: dashed 1px #000000;
    
-    color:#F1C40F ;text-align:center;padding:60px;
+    color:#FE9400 ;text-align:center;padding:60px;
 }
+
 .demo-row {
   margin-bottom: 20px;
   }
