@@ -90,7 +90,7 @@
                 @foreach (var items in Model.ImageList)
             {
                     <div class="item">
-                        <img src="@items.ImagePath" alt="@items.Name" class="img-rounded" height="400" />
+                        <img src="@items.ImagePath" class="img-rounded" height="400" />
                     </div>
                 }
                 <div class="item active">
@@ -120,7 +120,7 @@
               
 
 
-                      &nbsp; Price:@String.Format("{0:C}", @Model.Price)<small>per month</small>
+                      &nbsp; Price:@String.Format("{0:#,#.}", @Model.Price) Ugshs &nbsp;<small>per month</small>
 
                       
 
@@ -158,7 +158,7 @@
                 </dt>
 
                 <dd>
-                    @Html.DisplayFor(model => model.Price)
+                 @String.Format("{0:#,#.}", @Model.Price) &nbsp; Ugshs
                 </dd>
 
 
@@ -202,7 +202,6 @@
                     <dt>
                         @Html.DisplayFor(model => model.Phone)
                     </dt>
-<<<<<<< HEAD
                     <dd>
                         <!-- Load Facebook SDK for JavaScript -->
 @*
@@ -238,9 +237,7 @@
                          Google+
 *@
                     </dd>
-=======
-        
->>>>>>> 3be6423d26ac4243e4c84ff1b439e2503c245f65
+
                 </dl>
             </div>
             <div>

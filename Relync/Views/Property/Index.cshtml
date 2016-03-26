@@ -19,14 +19,13 @@
           <div class="tab-content text-center" style="padding: 15px;">
 
             <div id="tabr1" class="tab">
-                @using (Html.BeginForm("Landing", "Property", FormMethod.Post, new { @encType = "multipart/form-data" }))
-                {
-    <a href="~/Property/Map?pptyType=RENT" class="btn btn-wide input-landing"style="background-color: rgba(0, 0, 0, 0.59);border: solid 1px orange;"><i class="glyphicon glyphicon-map-marker"></i>Rent</a>
+               
+    <a href="~/Property/Map?typ=RENT" class="btn btn-wide input-landing"style="background-color: rgba(0, 0, 0, 0.59);border: solid 1px orange;"><i class="glyphicon glyphicon-map-marker"></i>Rent</a>
                   @*  <a href="~/Property/Map" class="icn btn btn-wide animated zoomInDown animated infinite bounce"><span class="fui fui-location"></span></a>
                 *@
-<a href="#" class="btn btn-wide input-landing" style="background-color: rgba(0, 0, 0, 0.59);border: solid 1px orange;"><i class="glyphicon glyphicon-map-marker"></i>Sale</a>
+<a id="salebutton" href="~/Property/Map?typ=SALE"   class="btn btn-wide input-landing" style="background-color: rgba(0, 0, 0, 0.59);border: solid 1px orange;"><i class="glyphicon glyphicon-map-marker"></i>Sale</a>
 
-                }
+            
             </div>
 
 

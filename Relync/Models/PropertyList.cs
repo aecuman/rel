@@ -34,7 +34,7 @@ namespace Relync.Models
         public double Bedrooms { get; set; }
 
         public double Baths { get; set; }
-        public string Price { get; set; }
+        public decimal Price { get; set; }
 
 
       
@@ -69,6 +69,7 @@ namespace Relync.Models
         public List<ImageGallery>ImageList { get; set; }
         public string planLink { get; set; }
         public string vidLink { get; set; }
+        public string thumbpic { get; set; }
         public List<Comment> Commnt { get; set; }
         public int TotalComments { get; set; }
 
@@ -95,10 +96,9 @@ namespace Relync.Models
     public  class ImageGallery
     {
         
-       public string ID { get; set; }
-        public string Name { get; set; }
+       public string ID { get; set; }      
         public string ImagePath { get; set; }
-        public string ThumbPath { get; set; }
+     
     }
 
     public class Comment

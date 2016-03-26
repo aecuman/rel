@@ -17,11 +17,12 @@ Json.Encode(
     user.Id,
     user.lat,
     user.lon,
-    user.Bedrooms,    
+    user.Bedrooms,
     user.Baths,
     user.Price,
     user.pptyType,
-    user.ImageList
+    user.thumbpic,
+    user.GDescription
         })
        )
     )));
@@ -29,49 +30,81 @@ Json.Encode(
         var pinLayer = new Microsoft.Maps.EntityCollection();
         // Initialize the map
         map = new Microsoft.Maps.Map(document.getElementById("mapDiv"), { credentials: " Aio4TWHf6U2isW-y1tzY5WUCBO778t2qso2XUKDj3TX8ecNxywEUQ0nl3dCDMrPx",mapTypeId: Microsoft.Maps.MapTypeId.road,center: new Microsoft.Maps.Location(0.3136, 32.5811), zoom: 16, showScalebar: false,enableSearchLogo:false,showMapTypeSelector:false,showDashboard:false});
-       
+
         // Create the info box for the pushpin
+
         pinInfobox = new Microsoft.Maps.Infobox(new Microsoft.Maps.Location(0, 0), { visible: false });
         infoboxLayer.push(pinInfobox);
 
         var locs = [];
         for (var i = 0 ; i < pushpinInfos.length; i++) {
-        locs[i] = new Microsoft.Maps.Location(pushpinInfos[i].lat, pushpinInfos[i].lon);
-        var pin = new Microsoft.Maps.Pushpin(locs[i], { width: 50, height: 50});
-        pin.Title ="Price:"+" "+  String(pushpinInfos[i].Price);
-        pin.Description ='<b>'+"For:"+'</b>'+pushpinInfos[i].pptyType+'<br>'+"Bedrooms:"+pushpinInfos[i].Bedrooms+'</br>'+"Baths:"+String(pushpinInfos[i].Baths)+'</br>'+'<b>'+'<a href="/Property/Details/'+pushpinInfos[i].Id+'">View House</a>'+'</b>'+'<img src=/Images/GalleryImages/thumbs/'+pushpinInfos[i].ImageList;
-        pinLayer.push(pin);
-       
-        Microsoft.Maps.Events.addHandler(pin, 'mouseover', displayInfobox);
-        Microsoft.Maps.Events.addHandler(pin, 'click', displayInfobox);
-        Microsoft.Maps.Events.addHandler(pinInfobox, 'mouseleave', hideInfobox);
+
+            locs[i] = new Microsoft.Maps.Location(pushpinInfos[i].lat, pushpinInfos[i].lon);
+            var pin = new Microsoft.Maps.Pushpin(locs[i], { width: 25, height: 36});
+            pin.Title ="Price:"+" "+ (pushpinInfos[i].Price).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g,"$1,");
+            if(pushpinInfos[i].pptyType=="RENT"){
+                pin.Description ='<b>'+"For:"+'</b>'+pushpinInfos[i].pptyType+'<br>'+"Bedrooms:"+pushpinInfos[i].Bedrooms+'</br>'+"Baths:"+String(pushpinInfos[i].Baths)+'</br>'+'<img  src='+pushpinInfos[i].thumbpic+' width=150 />'+'<b>'+'<a href="/Property/Details/'+pushpinInfos[i].Id+'">View Details</a>'+'</b>';
+            } else{
+                pin.Description ='<img  src='+pushpinInfos[i].thumbpic+' width=150 />'+'<br>'+ pushpinInfos[i].GDescription + '</br>'+'<b>'+'<a href="/Property/Detailsale/'+pushpinInfos[i].Id+'">View Details</a>'+'</b>';
+            }
+            pinLayer.push(pin);
+
+            Microsoft.Maps.Events.addHandler(pin, 'mouseover', displayInfobox);
+            Microsoft.Maps.Events.addHandler(pin, 'click', displayInfobox);
+            Microsoft.Maps.Events.addHandler(pinInfobox, 'mouseleave', hideInfobox);
 
         }
 
         map.entities.push(pinLayer);
         map.entities.push(infoboxLayer);
-    
+
         var bestview = Microsoft.Maps.LocationRect.fromLocations(locs);
         map.setView({ center: bestview.center, zoom: 14 });
-        }
 
-        function displayInfobox(e) {
-        pinInfobox.setOptions({ title: e.target.Title, description: e.target.Description, visible: true, offset: new Microsoft.Maps.Point(0, 25) });
+    }
+
+    function displayInfobox(e) {
+
+        pinInfobox.setOptions({ title: e.target.Title, description: e.target.Description, visible: true, offset: new Microsoft.Maps.Point(0,25),width:175,height:265,zIndex:999 });
+
         pinInfobox.setLocation(e.target.getLocation());
+        var buffer=25;
+        var infoboxOffset=pinInfobox.getOffset();
+        var infoboxAnchor=pinInfobox.getAnchor();
+        var infoboxLocation=map.tryLocationToPixel(e.target.getLocation(), Microsoft.Maps.PixelReference.control);
+        var dx=infoboxLocation.x+infoboxOffset.x-infoboxAnchor.x;
+        var dy=infoboxLocation.y-25-infoboxAnchor.y;
+        if(dy<buffer){
+            dy*=-1;
+            dy+=buffer;
+        }else{
+            dy=0;
+        }if (dx<buffer){
+            dx*=-1;
+            dx+=buffer;
+        }else{dx=map.getWidth()-infoboxLocation.x+infoboxAnchor.x-pinInfobox.getWidth();
+            if(dx>buffer){dx=0;}else{
+                dx-=buffer;
+            }
         }
+        if(dx!=0 ||dy!=0){
+            map.setView({centerOffset:new Microsoft.Maps.Point(dx,dy),center:map.getCenter()});
+        }
+    }
 
-        function hideInfobox(e) {
+    function hideInfobox(e) {
         pinInfobox.setOptions({ visible: false });
-        }
+    }
 
-    
+
+
 </script>
 
         <body onload="GetMap();">
          
           
             <div class="row" data-offset-top="197">
-                <small> <h5 class="animated infinite flash text-center" style="z-index: 2;position: relative;">tap pin to preview</h5></small>
+                <small> <h5 id="tapword" class="animated infinite flash text-center slow" style="z-index: 2;position: relative;">Tap pin to preview</h5></small>
               
                 </div>
 

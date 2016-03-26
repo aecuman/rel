@@ -128,7 +128,17 @@ namespace Relync.Controllers
 
             return View(p_detail);
         }
+        [HttpGet]
+        public ActionResult Detailsale(string Id)
+        {
 
+            var p_detail = _property.GetProperty(Id);
+            ViewBag.PostId = p_detail.Id;
+            ViewBag.TotalComments = p_detail.TotalComments;
+            ViewBag.LoadedComments = 5;
+
+            return View(p_detail);
+        }
         // GET: Property/Create
         public ActionResult Create()
         {
@@ -137,7 +147,7 @@ namespace Relync.Controllers
 
         // POST: Property/Create
         [HttpPost]
-        public ActionResult Create(PropertyList property, IEnumerable<HttpPostedFileBase> files, HttpPostedFileBase planLink)
+        public ActionResult Create(PropertyList property, IEnumerable<HttpPostedFileBase> files, HttpPostedFileBase planLink, HttpPostedFileBase thumbpic)
         {
 
             try
@@ -152,32 +162,39 @@ namespace Relync.Controllers
                     var model = new ImageGallery();
                     if (Piclist.Count == 0)
                     {
-                        model.ID = "0";
+                        model.ID = "1";
                     }
                     else
                     {
                         model.ID = (Piclist.Count + 1).ToString();
                     }
-                    model.Name = Guid.NewGuid().ToString();
+                  
                     var ext = Path.GetExtension(file.FileName).ToLower();
                     using (var img = Image.FromStream(file.InputStream))
                     {
-                        model.ThumbPath = string.Format("/Images/GalleryImages/thumbs/{0}{1}", model.Name, ext);
-                        model.ImagePath = string.Format("/Images/GalleryImages/{0}{1}", model.Name, ext);
+                        
+                        model.ImagePath = string.Format("/Images/GalleryImages/{0}{1}", "pic"+model.ID, ext);
                         //Save Large Size
-                        SaveToFolder(img, model.Name, ext, new Size(600, 600), model.ImagePath);
+                        SaveToFolder(img, model.ID, ext, new Size(600, 400), model.ImagePath);
                         //Save thumb Size
-                        SaveToFolder(img, model.Name, ext, new Size(100, 100), model.ThumbPath);
+                      
                     }
                     Piclist.Add(model);
 
                 }
                 var xt = Path.GetExtension(planLink.FileName).ToLower();
                 var pat = string.Format("/Images/GalleryImages/Plans/{0}{1}", planLink.FileName, xt);
-
+                
                 using (var ig = Image.FromStream(planLink.InputStream))
                 {
-                    SaveToFolder(ig, planLink.FileName, xt, new Size(600, 600), pat);
+                    SaveToFolder(ig, planLink.FileName, xt, new Size(600, 400), pat);
+                }
+                var thumbname = Guid.NewGuid().ToString();
+                var thmbxt = Path.GetExtension(thumbpic.FileName).ToLower();
+                property.thumbpic = string.Format("/Images/GalleryImages/thumbs/{0}{1}", thumbname, thmbxt);
+                using (var th = Image.FromStream(thumbpic.InputStream))
+                {
+                    SaveToFolder(th,thumbname,thmbxt,new Size(400,150),property.thumbpic);
                 }
                 property.planLink = pat;
                 property.ImageList = Piclist;

@@ -408,6 +408,7 @@
     <Content Include="Views\Property\AddComment.cshtml" />
     <Content Include="Views\Property\CommentList.cshtml" />
     <Content Include="Views\Property\Comment.cshtml" />
+    <Content Include="Views\Property\Detailsale.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
