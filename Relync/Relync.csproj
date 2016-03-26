@@ -303,9 +303,25 @@
     <Content Include="Content\Site.css" />
     <Content Include="Images\Abtpic.jpg" />
     <Content Include="Images\bn.jpg" />
-    <Content Include="Images\GalleryImages\c5d5e9d3-02dd-4986-aac9-9663c830700c.jpg" />
-    <Content Include="Images\GalleryImages\Plans\1.jpg.jpg" />
-    <Content Include="Images\GalleryImages\thumbs\c5d5e9d3-02dd-4986-aac9-9663c830700c.jpg" />
+    <Content Include="Images\GalleryImages\10b27345-7f97-4f2e-b320-6621f025c3ce.jpg" />
+    <Content Include="Images\GalleryImages\3e40903c-0f7c-4c87-a23a-84bdec2558e3.jpg" />
+    <Content Include="Images\GalleryImages\5646afe4-d511-4d2f-a251-0ecfb507df9f.jpg" />
+    <Content Include="Images\GalleryImages\5bb0429b-4d21-40e1-aea6-961c09adf868.jpg" />
+    <Content Include="Images\GalleryImages\625a1b42-c077-4a11-b9a6-b18acb627985.jpg" />
+    <Content Include="Images\GalleryImages\6928943c-2099-4f89-9ffb-d91a909da29b.jpg" />
+    <Content Include="Images\GalleryImages\71c3d546-2b12-4d32-b60b-c59993f6253e.jpg" />
+    <Content Include="Images\GalleryImages\7f08184d-18c3-4b08-91d3-f887b330632e.jpg" />
+    <Content Include="Images\GalleryImages\81149010-3e2e-43a9-b32c-0489272660e3.jpg" />
+    <Content Include="Images\GalleryImages\8e59d723-f7e1-4604-8341-878b0d68dca8.jpg" />
+    <Content Include="Images\GalleryImages\966f94b9-85f0-4253-a0f3-de51b7544770.jpg" />
+    <Content Include="Images\GalleryImages\a140ed50-678d-4174-918f-82705c5a0699.jpg" />
+    <Content Include="Images\GalleryImages\af2ca407-93e1-4867-8cf8-051a06406a4e.jpg" />
+    <Content Include="Images\GalleryImages\b4b0dc6c-6f2f-407a-b977-3225730295e0.jpg" />
+    <Content Include="Images\GalleryImages\ce7a904b-e5d5-487f-9355-9c37e76b995a.jpg" />
+    <Content Include="Images\GalleryImages\Plans\1.jpg.jpg.jpg" />
+    <Content Include="Images\GalleryImages\Plans\IMG_2209.JPG.jpg" />
+    <Content Include="Images\GalleryImages\thumbs\44b5044c-2974-4912-ae9d-682aebcc51af.jpg" />
+    <Content Include="Images\GalleryImages\thumbs\f512cb0f-8b12-4a3c-838c-9dd8caefc05e.jpg" />
     <Content Include="Images\Icons\clipboard.svg" />
     <Content Include="Images\Icons\map.svg" />
     <Content Include="Images\Icons\vid.svg" />
@@ -394,7 +410,6 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\History\Index.cshtml" />
-    <Content Include="Views\Property\Create.cshtml" />
     <Content Include="Views\Property\Details.cshtml" />
     <Content Include="Views\Property\Index.cshtml" />
     <Content Include="Views\Property\Delete.cshtml" />
@@ -409,6 +424,7 @@
     <Content Include="Views\Property\CommentList.cshtml" />
     <Content Include="Views\Property\Comment.cshtml" />
     <Content Include="Views\Property\Detailsale.cshtml" />
+    <Content Include="Views\Property\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

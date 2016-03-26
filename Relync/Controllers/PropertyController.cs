@@ -172,8 +172,8 @@ namespace Relync.Controllers
                     var ext = Path.GetExtension(file.FileName).ToLower();
                     using (var img = Image.FromStream(file.InputStream))
                     {
-                        
-                        model.ImagePath = string.Format("/Images/GalleryImages/{0}{1}", "pic"+model.ID, ext);
+                        var imgname = Guid.NewGuid().ToString();
+                        model.ImagePath = string.Format("/Images/GalleryImages/{0}{1}", imgname, ext);
                         //Save Large Size
                         SaveToFolder(img, model.ID, ext, new Size(600, 400), model.ImagePath);
                         //Save thumb Size
