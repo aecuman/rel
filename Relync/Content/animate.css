@@ -3339,5 +3339,5 @@
   animation-name: slideOutUp;
 }
 .slow{
-   animation-delay:3s;
+   animation-duration:5s;
 }

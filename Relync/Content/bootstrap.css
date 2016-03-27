@@ -4447,9 +4447,9 @@ textarea.input-group-sm > .input-group-btn > .btn {
     margin-top: 8px;
     margin-right: 15px;
     margin-bottom: 8px;
-    background-color: transparent;
+    background-color: #FE9500;
     border: 1px solid transparent;
-    border-radius: 4px;
+  
 }
 
     .navbar-toggle .icon-bar {

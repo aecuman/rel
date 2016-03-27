@@ -4124,20 +4124,21 @@ fieldset[disabled] .input-group-btn .btn-default.active {
     }
   }
 .navbar-toggle {
-  height: 53px;
+  height: 66px;
   padding: 0 21px;
   margin: 0 0 0 21px;
   line-height: 53px;
   color: #34495e;
   border: none;
   }
+
 .navbar-toggle:before {
   font-family: "Flat-UI-Icons";
   font-size: 20px;
   font-style: normal;
   font-weight: normal;
   color: #16a085;
-  content: "\e630";
+  content: "\e61a";
   -webkit-transition: color .25s linear;
           transition: color .25s linear;
 
