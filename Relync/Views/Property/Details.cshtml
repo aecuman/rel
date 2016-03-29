@@ -79,8 +79,8 @@
 
         });
     </script>
-    <body onload="GetMap();">
-        <h4 class="col-lg-offset-1">@Html.DisplayFor(model => model.pptyType) - @Html.DisplayFor(model => model.District) - @Html.DisplayFor(model => model.Suburb) - @Html.DisplayFor(model => model.Contact)</h4>
+    <body onload="GetMap();" data-spy="scroll" data-target="#myScrollspy">
+        <h5 class="col-lg-offset-1">@Html.DisplayFor(model => model.pptyType) - @Html.DisplayFor(model => model.District) - @Html.DisplayFor(model => model.Suburb) - @Html.DisplayFor(model => model.Contact)</h5>
 
 
 
@@ -103,7 +103,7 @@
             </div>
         
 
-        <div class="row" data-spy="affix" style="background-color:#D2D0C8; z-index:15; width:100%;" data-offset-top="750">
+        <div class="row" style="background-color:#D2D0C8; z-index:15; width:100%;">
             <div class="col-lg-8 inline-form-control">
                 
                     <div class="col-lg-offset-2 ">
@@ -129,10 +129,10 @@
                 
             </div>
         </div>
-        <dd class="row" style="background-color:#fff">
+        <div class="row" style="background-color:#fff"  data-offset-top="1200" id="myScrollspy">
 
             <dl class="dl-horizontal col-lg-8">
-                <dd>
+                <dd id="section1">
                     <b> @Html.DisplayName("General Description")</b>
 
                 </dd>
@@ -150,7 +150,7 @@
                     <b> @Html.DisplayName("Floor Plan")</b>
 
                 </dt>
-                <dd>
+                <dd id="section2">
                     <img src="@Model.planLink" class="img-rounded text-center" style="width:100%" />
                 </dd>
                 <dt>
@@ -183,7 +183,7 @@
                 <dd>
                     @Html.DisplayFor(model => model.Email)
                 </dd>
-                <dt>
+                <dt id="section3">
                     @Html.DisplayName("Video Tour")
                 </dt>
                 <dd class="embed-responsive embed-responsive-16by9">
@@ -192,53 +192,60 @@
 
 
             </dl>
-            <div class="col-lg-4">
-
+            <div class="col-lg-4" >
+               
                 <dl class="text-center">
-                    <dt>
-                        @Html.DisplayName("Please Call")&nbsp;@Html.DisplayFor(model => model.ListedBy)
-                    </dt>
+                   
+                        <dt>
+                            @Html.DisplayName("Please Call")&nbsp;@Html.DisplayFor(model => model.ListedBy)
+                        </dt>
 
-                    <dt>
-                        @Html.DisplayFor(model => model.Phone)
-                    </dt>
-                    <dd>
-                        <!-- Load Facebook SDK for JavaScript -->
-@*
-                         <div id="fb-root"></div>
-                         <script>
-                             FB.ui({
-                                 method: 'share_open_graph',
-                                 action_type: 'og.likes',
-                                 action_properties: JSON.stringify({
-                                     object:'https://developers.facebook.com/docs/',
-                                 })
-                             }, function(response){}); </script>
+                        <dt>
+                            @Html.DisplayFor(model => model.Phone)
+                        </dt>
+                        <dd>
+                            
+                            <!-- Load Facebook SDK for JavaScript -->
+                            @*
+                                     <div id="fb-root"></div>
+                                     <script>
+                                         FB.ui({
+                                             method: 'share_open_graph',
+                                             action_type: 'og.likes',
+                                             action_properties: JSON.stringify({
+                                                 object:'https://developers.facebook.com/docs/',
+                                             })
+                                         }, function(response){}); </script>
 
-                         <!-- Your share button code -->
-                         <div class="fb-share-button"
-                              data-href="@Url.Encode(Request.Url.ToString())"
-                              data-layout="button_count">
-                         </div>
-                         <a href="whatsapp://send?text=@Url.Encode(Request.Url.ToString())&nbsp;@Url.Encode(Model.pptyType)>" data-action="share/whatsapp/share"><span class="fui-skype"></span> Share via Whatsapp</a>
-                         <a href="https://twitter.com/intent/tweet?
-    url=https://relync.ug/Property/Details/@Model.Id&text=@Url.Encode(Model.pptyType)"
-                            target="_blank" title="Tweet">
-                             <span class="fui-twitter"></span>
-                         </a>
+                                     <!-- Your share button code -->
+                                     <div class="fb-share-button"
+                                          data-href="@Url.Encode(Request.Url.ToString())"
+                                          data-layout="button_count">
+                                     </div>
+                                     <a href="whatsapp://send?text=@Url.Encode(Request.Url.ToString())&nbsp;@Url.Encode(Model.pptyType)>" data-action="share/whatsapp/share"><span class="fui-skype"></span> Share via Whatsapp</a>
+                                     <a href="https://twitter.com/intent/tweet?
+                url=https://relync.ug/Property/Details/@Model.Id&text=@Url.Encode(Model.pptyType)"
+                                        target="_blank" title="Tweet">
+                                         <span class="fui-twitter"></span>
+                                     </a>
 
-                         Twitter
-                         <a href="https://plus.google.com/share?
-    url=@Url.Encode(Request.Url.ToString())"
-                            target="_blank" title="Share on Google+">
-                             <span class="fui-google-plus"></span>
+                                     Twitter
+                                     <a href="https://plus.google.com/share?
+                url=@Url.Encode(Request.Url.ToString())"
+                                        target="_blank" title="Share on Google+">
+                                         <span class="fui-google-plus"></span>
 
-                         </a>
-                         Google+
-*@
-                    </dd>
+                                     </a>
+                                     Google+
+                            *@
+                        </dd>
 
-                </dl>
+</dl>
+            @*    <ul class="nav nav-tabs nav-stacked" data-offset-top="240" data-spy="affix">
+        <li class="active"><a href="#section1">Section One</a></li>
+        <li><a href="#section2">Section Two</a></li>
+        <li><a href="#section3">Section Three</a></li>
+    </ul>*@
             </div>
             <div>
 
