@@ -26,7 +26,7 @@ namespace Relync.Models
             {
 
                 // connection = "mongodb://localhost:27017/propertydb";
-                connection = "mongodb://admin:relync101@ds019839.mlab.com:19839/propertydb";
+              connection = "mongodb://admin:relync101@ds019839.mlab.com:19839/propertydb";
             }
             MongoClient mongoClient = new MongoClient(connection);
            //  _server = mongoClient.GetDatabase("propertydb");

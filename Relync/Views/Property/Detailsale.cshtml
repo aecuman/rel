@@ -87,11 +87,11 @@
             @foreach (var items in Model.ImageList)
             {
                 <div class="item">
-                    <img src="@items.ImagePath" class="img-rounded" height="400" />
+                    <img src="@items.ImagePath" class="img-responsive centre-block ctr" height="400" />
                 </div>
             }
             <div class="item active">
-                <div id='myMap' style="position:relative; height:400px;"></div>
+                <div id='myMap' style="position:relative; height:337px;" class="img-responsive ctr"></div>
             </div>
 
         </div>
@@ -242,7 +242,8 @@
         </div>
         <p>
             <!--  @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |-->
-            @Html.ActionLink("Back to List", "Map")
+            @Html.ActionLink("Back to Map", "Map")
+            @ViewData["type"]=@Model.pptyType;
         </p>
 </body>
 @Scripts.Render("~/bundles/jquery")

@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<Relync.Models.PropertyList>
 
 @{
+    //ViewData["type"]
     ViewBag.Title = "Map";
     Layout = "~/Views/Shared/_pptylyout.cshtml";
 }
@@ -43,9 +44,9 @@ Json.Encode(
             var pin = new Microsoft.Maps.Pushpin(locs[i], { width: 25, height: 36});
             pin.Title ="Price:"+" "+ (pushpinInfos[i].Price).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g,"$1,");
             if(pushpinInfos[i].pptyType=="RENT"){
-                pin.Description ='<b>'+"For:"+'</b>'+pushpinInfos[i].pptyType+'<br>'+"Bedrooms:"+pushpinInfos[i].Bedrooms+'</br>'+"Baths:"+String(pushpinInfos[i].Baths)+'</br>'+'<img  src='+pushpinInfos[i].thumbpic+' width=150 />'+'<b>'+'<a href="/Property/Details/'+pushpinInfos[i].Id+'">View Details</a>'+'</b>';
+                pin.Description ='<b>'+"For:"+'</b>'+pushpinInfos[i].pptyType+'<br>'+"Bedrooms:"+pushpinInfos[i].Bedrooms+'</br>'+"Baths:"+String(pushpinInfos[i].Baths)+'</br>'+'<img  src='+pushpinInfos[i].thumbpic+' width=150 />'+'<b>'+'<a class="prvw btn" href="/Property/Details/'+pushpinInfos[i].Id+'">See Full Details</a>'+'</b>';
             } else{
-                pin.Description ='<img  src='+pushpinInfos[i].thumbpic+' width=150 />'+'<br>'+ pushpinInfos[i].GDescription + '</br>'+'<b>'+'<a href="/Property/Detailsale/'+pushpinInfos[i].Id+'">View Details</a>'+'</b>';
+                pin.Description ='<img  src='+pushpinInfos[i].thumbpic+' width=150 />'+'<br>'+ pushpinInfos[i].GDescription + '</br>'+'<b>'+'<a class="prvw btn" href="/Property/Detailsale/'+pushpinInfos[i].Id+'">See Full Details</a>'+'</b>';
             }
             pinLayer.push(pin);
 

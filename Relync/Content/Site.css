@@ -88,3 +88,13 @@ textarea {
   margin-top: -10px;
   margin-bottom: -4px;
   }
+.prvw{
+    width:150px;
+    margin-top: 10px;
+    background-color: rgba(0, 0, 0, 0.59);
+    border: solid 1px orange;
+   
+}
+.ctr{
+    margin:0 auto;
+}
