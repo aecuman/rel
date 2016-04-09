@@ -71,7 +71,7 @@
 
             });
             $('.carousel').carousel({
-                interval: false
+                interval: 10000
             })
 
         });
@@ -243,7 +243,7 @@
         <p>
             <!--  @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |-->
             @Html.ActionLink("Back to Map", "Map")
-            @ViewData["type"]=@Model.pptyType;
+        
         </p>
 </body>
 @Scripts.Render("~/bundles/jquery")
