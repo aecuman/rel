@@ -5899,7 +5899,10 @@ button.close {
     margin-right: auto;
     margin-left: auto;
 }
-
+#mapdir{
+    height:400px;
+    top:calc(50% - 200px) !important;
+}
 .modal-content {
     position: relative;
     background-color: #ffffff;
@@ -6120,7 +6123,9 @@ button.close {
     border-bottom-color: #000000;
     border-width: 0 5px 5px;
 }
-
+.dly{
+    animation-delay:1s
+}
 .popover {
     position: absolute;
     top: 0;
@@ -6131,13 +6136,14 @@ button.close {
     padding: 1px;
     text-align: left;
     white-space: normal;
-    background-color: #ffffff;
+   background-color: rgba(254, 0, 0, 0.84);
     border: 1px solid #cccccc;
     border: 1px solid rgba(0, 0, 0, 0.2);
-    border-radius: 6px;
+    border-radius: 30px;
     -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
     background-clip: padding-box;
+    
 }
 
     .popover.top {
@@ -6168,7 +6174,10 @@ button.close {
 }
 
 .popover-content {
-    padding: 9px 14px;
+  padding: 3px 14px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #ffffff;
 }
 
 .popover .arrow,

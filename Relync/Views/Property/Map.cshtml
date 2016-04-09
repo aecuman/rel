@@ -11,6 +11,7 @@
 
     function GetMap()
     {
+        $('#mapdir').modal();
         var  pushpinInfos = @Html.Raw(
 Json.Encode(
 ((Model.ToList().Select(user => new
@@ -53,6 +54,7 @@ Json.Encode(
             Microsoft.Maps.Events.addHandler(pin, 'mouseover', displayInfobox);
             Microsoft.Maps.Events.addHandler(pin, 'click', displayInfobox);
             Microsoft.Maps.Events.addHandler(pinInfobox, 'mouseleave', hideInfobox);
+           
 
         }
 
@@ -61,7 +63,7 @@ Json.Encode(
 
         var bestview = Microsoft.Maps.LocationRect.fromLocations(locs);
         map.setView({ center: bestview.center, zoom: 14 });
-
+       
     }
 
     function displayInfobox(e) {
@@ -97,15 +99,29 @@ Json.Encode(
         pinInfobox.setOptions({ visible: false });
     }
 
-
+ 
 
 </script>
 
         <body onload="GetMap();">
-         
+
+            <div id="mapdir" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <p class="modal-title">Tap &nbsp;<img src="http://ecn.dev.virtualearth.net/mapcontrol/v7.0/7.0.20150902134620.61/i/poi_search.png"> &nbsp; on the map to preview </p>
+                        </div>
+                        <div class="modal-body">
+                            <small>Navigate map to see properties</small>
+                        </div>
+
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
           
             <div class="row">
-                <small> <h5 id="tapword" class="animated flash text-center slow" style="z-index: 2;position: relative;">Tap pin to preview</h5></small>
+               
               
                 </div>
 
